@@ -22,7 +22,7 @@ export default defineUserConfig({
       name: "htong",
       url: "htong890@outlook.com",
     },
-    logo: "/logo.svg",
+    logo: "/hero.png",
     repo: "vuepress-theme-hope/vuepress-theme-hope",
     docsDir: "src",
     // locales: {

@@ -4,24 +4,30 @@ export const sidebarZh = sidebar({
   "/": [
     "",
     {
-      text: "前端",
+      text: "大前端",
       icon: "laptop-code",
-      prefix: "vue/",
-      link: "vue/",
+      prefix: "largeFront/",
+      collapsible: true,
       children: "structure",
     },
     {
       text: "后端",
-      icon: "react",
-      prefix: "react/",
+      icon: "backend",
+      prefix: "backend/",
+      collapsible: true,
       children: "structure",
     },
     {
       text: "算法",
-      icon: "react",
-      prefix: "react/",
+      icon: "algorithm",
+      prefix: "algorithm/",
       children: "structure",
     },
-    "intro",
+    {
+      text: "介绍",
+      icon: "intro",
+      prefix: "intro/",
+      children: "structure",
+    },
   ],
 })
