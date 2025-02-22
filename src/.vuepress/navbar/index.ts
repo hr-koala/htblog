@@ -1,1 +1,1 @@
-export * from "./zh.ts"
+export * from "./navbarZh.ts"
