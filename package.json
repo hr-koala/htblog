@@ -1,6 +1,6 @@
 {
-  "name": "vuepress-theme-hope-template",
-  "description": "A project of vuepress-theme-hope",
+  "name": "htblog",
+  "description": "博客",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

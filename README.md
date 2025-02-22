@@ -2,7 +2,9 @@
 
 ## 命令行创建
 
-`npm init vuepress vuepress-demo`
+> `npm init vuepress vuepress-demo`
+
+> `npm init vuepress-theme-hope@latest mydocs`
 
 ## 手动创建文件文档
 
@@ -13,9 +15,9 @@
 > npm init
 
 > 安装 vuepress
-> **_npm install -D vuepress@next_**
+> **_ npm install -D vuepress@next _**
 > 安装打包工具和主题
-> **_npm install -D @vuepress/bundler-vite@next @vuepress/theme-default@next_**
+> **_ npm install -D @vuepress/bundler-vite@next @vuepress/theme-default@next _**
 
 > mkdir docs
 > mkdir docs/.vuepress
