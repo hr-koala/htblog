@@ -14,6 +14,7 @@ export const navbarZh = navbar([
         link: "vue/",
         // children: ["axios"],
       },
+      { text: "Vue3", icon: "book", prefix: "vue3/", link: "vue3/" },
       {
         text: "React",
         icon: "pen-to-square",
@@ -28,18 +29,10 @@ export const navbarZh = navbar([
     icon: "pen-to-square",
     prefix: "backend/",
     children: [
-      {
-        text: "Node",
-        prefix: "nodejs/",
-        link: "nodejs/",
-      },
-      {
-        text: "Php",
-        prefix: "php/",
-        link: "php/",
-      },
-      "Electerm",
-      "Xshell",
+      { text: "NodeJS", prefix: "nodejs", link: "nodejs" },
+      { text: "Php", prefix: "php", link: "php" },
+      { text: "Electerm", prefix: "Electerm", link: "electerm" },
+      { text: "Xshell", prefix: "Xshell", link: "xshell" },
     ],
   },
   { text: "算法", icon: "book", link: "algorithm/" },

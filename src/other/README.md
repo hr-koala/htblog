@@ -2,15 +2,15 @@
 # 这是文章的标题
 title: Markdown 展示
 # 你可以自定义封面图片
-cover: /assets/logopng
+cover: /assets/logo.png
 # 这是页面的图标
 icon: fa6-brands:markdown
 # 这是侧边栏的顺序
 order: 3
 # 设置作者
-author: Ms.Hope
+author: htong
 # 设置写作时间
-date: 2020-01-01
+date: 2025-02-23
 # 一个页面可以有多个分类
 category:
   - 使用指南
