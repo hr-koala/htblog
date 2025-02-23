@@ -4,7 +4,7 @@ layout: BlogHome
 icon: house
 title: 主页
 heroImage: https://vuejs.press/images/hero.png
-heroImageDark: /logo.svg
+heroImageDark: /assets/logo.svg
 heroAlt: logoImage
 heroText: htong博客 # 主标题
 # heroFullScreen: true //全屏展示
@@ -14,6 +14,22 @@ projects:
     name: 项目名称
     desc: 项目详细描述
     link: https://github.com/hr-koala/htblog
+
+  - icon: link
+    name: Gitee
+    desc: Gitee description
+    link: https://gitee.com/explore/all
+
+  - icon: book
+    name: CSDN
+    desc: CSDN description
+    link: https://blog.csdn.net/
+
+  - icon: newspaper
+    name: article name
+    desc: Detailed description of the article
+    link: https://github.com/hr-koala/htblog
+
 actions:
   - text: 快速上手
     link: vue/axios.html

@@ -1,25 +1,23 @@
 import { sidebar } from "vuepress-theme-hope"
 
-export const sidebarZh = sidebar({
+export const sidebarEn = sidebar({
   "/": [
     "",
     {
-      text: "大前端",
+      text: "LargeFront",
       icon: "laptop-code",
       prefix: "largeFront/",
-      collapsible: true,
       children: "structure",
     },
     {
-      text: "后端",
-      icon: "circle-info",
+      text: "Backend",
+      icon: "backend",
       prefix: "backend/",
-      collapsible: true,
       children: "structure",
     },
     {
-      text: "算法",
-      icon: "book",
+      text: "Algorithm",
+      icon: "algorithm",
       prefix: "algorithm/",
       children: "structure",
     },

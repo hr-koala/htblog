@@ -8,11 +8,33 @@
 
 ## 手动创建文件文档
 
-> mkdir vuepress-demo
-> cd vuepress-demo
+::: tabs
 
-> git init
-> npm init
+@tab npm
+
+mkdir vuepress-demo
+cd vuepress-demo
+
+git init
+npm init
+
+@tab pnpm
+
+mkdir vuepress-demo
+cd vuepress-demo
+
+git init
+pnpm init
+
+@tab yarn
+
+mkdir vuepress-demo
+cd vuepress-demo
+
+git init
+yarn init
+
+:::
 
 > 安装 vuepress
 > **_ npm install -D vuepress@next _**
@@ -34,17 +56,24 @@ export default defineUserConfig({
 })
 ```
 
+::: code-tabs
+@tab npm
+
 ```ts
 npm install
 npm run docs:dev
 npm run docs:build
 ```
 
+@tab yarn
+
 ```ts
 yarn install
 yarn docs:dev
 yarn docs:build
 ```
+
+:::
 
 ##
 

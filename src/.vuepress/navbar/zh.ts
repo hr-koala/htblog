@@ -5,19 +5,21 @@ export const navbarZh = navbar([
   {
     text: "大前端",
     icon: "pen-to-square",
-    prefix: "largeFront/",
+    prefix: "/largeFront/",
     children: [
       {
-        text: "前端",
-        icon: "pen-to-square",
+        text: "Vue",
+        icon: "book",
         prefix: "vue/",
-        children: [{ text: "vue", icon: "pen-to-square", link: "axios" }],
+        link: "vue/",
+        // children: ["axios"],
       },
       {
-        text: "前端",
+        text: "React",
         icon: "pen-to-square",
         prefix: "react/",
-        children: [{ text: "react", icon: "pen-to-square", link: "react" }],
+        link: "react/",
+        // children: ["react"],
       },
     ],
   },
@@ -30,7 +32,8 @@ export const navbarZh = navbar([
         text: "Node",
         icon: "pen-to-square",
         prefix: "node/",
-        children: [{ text: "node", icon: "pen-to-square", link: "node" }],
+        link: "node/",
+        // children: [{ text: "node", icon: "pen-to-square", link: "node" }],
       },
     ],
   },
@@ -44,6 +47,8 @@ export const navbarZh = navbar([
     icon: "book",
     link: "financial/",
   },
+  { text: "项目管理", link: "/projectManagement/" },
+  { text: "其他", link: "/other/" },
   {
     text: "Guide",
     children: [
@@ -56,6 +61,4 @@ export const navbarZh = navbar([
       },
     ],
   },
-  { text: "项目管理", link: "/projectManagement" },
-  { text: "其他", link: "/other" },
 ])

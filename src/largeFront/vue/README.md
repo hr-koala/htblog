@@ -1,4 +1,9 @@
-# vue 系列
+---
+title: Vue 系列
+icon: circle-info
+# cover: https://theme-hope-assets.vuejs.press/logo.svg
+order: 1
+---
 
 <h3 style="text-align: center" align="center">Vue系列</h3>
 

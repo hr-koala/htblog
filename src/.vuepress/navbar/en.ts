@@ -2,8 +2,6 @@ import { navbar } from "vuepress-theme-hope"
 
 export const navbarEn = navbar([
   "/",
-  { text: "大前端", link: "/largeFront" },
-  { text: "算法", link: "/algorithm" },
   {
     text: "Guide",
     children: [
@@ -16,6 +14,4 @@ export const navbarEn = navbar([
       },
     ],
   },
-  { text: "项目管理", link: "/projectManagement" },
-  { text: "其他", link: "/other" },
 ])
