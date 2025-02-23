@@ -30,33 +30,30 @@ export const navbarZh = navbar([
     children: [
       {
         text: "Node",
-        icon: "pen-to-square",
-        prefix: "node/",
-        link: "node/",
-        // children: [{ text: "node", icon: "pen-to-square", link: "node" }],
+        prefix: "nodejs/",
+        link: "nodejs/",
       },
+      {
+        text: "Php",
+        prefix: "php/",
+        link: "php/",
+      },
+      "Electerm",
+      "Xshell",
     ],
   },
-  {
-    text: "算法",
-    icon: "book",
-    link: "algorithm/",
-  },
-  {
-    text: "金融",
-    icon: "book",
-    link: "financial/",
-  },
-  { text: "项目管理", link: "/projectManagement/" },
-  { text: "其他", link: "/other/" },
+  { text: "算法", icon: "book", link: "algorithm/" },
+  { text: "金融", icon: "book", link: "financial/" },
+  { text: "项目管理", icon: "pen-to-square", link: "projectManagement/" },
+  { text: "其他", icon: "pen-to-square", link: "other/" },
   {
     text: "Guide",
     children: [
       {
         text: "htong's Bolg",
         children: [
-          { text: "CSDN", link: "https://blog.csdn.net/XJ5210224" },
-          { text: "Gitee", link: "https://gitee.com/explore/all" },
+          { text: "CSDN", icon: "link", link: "https://blog.csdn.net/XJ5210224" },
+          { text: "Gitee", icon: "link", link: "https://gitee.com/explore/all" },
         ],
       },
     ],

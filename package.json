@@ -19,5 +19,19 @@
     "vue": "^3.5.13",
     "vuepress": "2.0.0-rc.19",
     "vuepress-theme-hope": "2.0.0-rc.71"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hr-koala/htblog.git"
+  },
+  "keywords": [
+    "web",
+    "vuepress",
+    "vue3",
+    "react"
+  ],
+  "bugs": {
+    "url": "https://github.com/hr-koala/htblog/issues"
+  },
+  "homepage": "https://github.com/hr-koala/htblog#readme"
 }

@@ -1,8 +1,8 @@
 import { defineUserConfig } from "vuepress"
 import { hopeTheme } from "vuepress-theme-hope"
-
-import { navbarZh } from "./navbar/index.js"
-import { sidebarZh } from "./sidebar/index.js"
+import { head } from "./head.ts"
+import { navbarZh } from "./navbar/index.ts"
+import { sidebarZh } from "./sidebar/index.ts"
 
 export default defineUserConfig({
   base: "/htblog/",
@@ -18,6 +18,7 @@ export default defineUserConfig({
     //   description: "A blog Docs",
     // },
   },
+  head,
   theme: hopeTheme({
     hostname: "xxxx",
     author: {

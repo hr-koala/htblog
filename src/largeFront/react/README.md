@@ -1,6 +1,13 @@
-# React 系列
+---
+title: React系列
+# icon: laptop-code
+order: 1
+date: 2025-02-25
+category:
+  - 大前端
+  - 前端
+---
 
-<h3 style="text-align: center" align="center">ES6系列</h3>
+React 系列目录:
 
-- [说说 var、let、const 之间的区别](https://github.com/hr-koala/projectdocs)
-- [怎么理解 ES6 中 Promise](/es6/promise.md)
+- [React](react.html)
