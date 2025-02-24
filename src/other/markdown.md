@@ -1,112 +1,439 @@
-# Markdown 语法、符号、公式
+---
+# 这是文章的标题
+title: Markdown 展示
+# 你可以自定义封面图片
+cover: /assets/logo.png
+# 这是页面的图标
+icon: fa6-brands:markdown
+# 这是侧边栏的顺序
+order: 3
+# 设置作者
+author: htong
+# 设置写作时间
+date: 2025-02-23
+# 一个页面可以有多个分类
+category:
+  - 使用指南
+# 一个页面可以有多个标签
+tag:
+  - Markdown
+  - 使用指南
+# 此页面会在文章列表置顶
+sticky: true
+# 此页面会出现在星标文章中
+star: true
+# 你可以自定义页脚
+footer: 这是测试显示的页脚
+# 你可以自定义版权信息
+copyright: 无版权
+---
 
-## 语法
+VuePress 主要从 Markdown 文件生成页面。因此，你可以使用它轻松生成文档或博客站点。
 
-1. 标题
-   在想要设置为标题的文字前面添加井号（#） ，井号（#）的数量代表了标题的级别。
+你需要创建并编写 Markdown，以便 VuePress 可以根据文件结构将它们转换为不同的页面。
 
-- 一级标题 `#` 二级标题 `##` 三级标题 `###` 四级标题 `####` 五级标题 `#####` 六级标题 `######`
+<!-- more -->
 
-2. 文本
-   > _斜体文本样式_ 斜体文本样式  
-   >  _斜体文本样式_ > **加粗文本样式** > **加粗文本样式**
-   > ==标记文本样式==
-   > ~~删除文本样式~~
-   > ~H~2~O 是液体~ H2O 是液体  
-   >  ^2^10^ 运算结果是 1024^ 2^10 运算结果是 1024
-3. 图片
-   语法：![图片Alt](图片Link "图片Title")
-   说明：图片 Alt【在图片因某些原因不能显示时来替代显示的文字，不是必须】，图片 Link【图片存储的地址链接】，图片 Title【在鼠标悬停在图片上时显示的文字】。
-4. 链接
-   （1）行内式
-   样例：百度一下
-   语法：[链接文字](链接地址 "title")
-   说明：[] 里面写链接文字，（） 里面写链接地址，在 （） 中可用为链接指定 title 属性【效果是鼠标悬停在链接上会出现指定的 title 文字】。  
-   （2）自动链接
-   样例：`https://www.baidu.com/`
-   语法：<链接地址>
-   说明：只要用 <> 把网址或者邮箱地址包起来，就自动转成链接。网址前必须有 http:// 或 https://。
-5. 目录
-   语法：@[TOC](这里写目录标题)
-   说明：在短路中填写 @[TOC] 显示全文内容的目录结构，（） 里面写标题的显示样式。
-6. 注脚    
-   沧海月明珠有泪，蓝田日暖玉生烟 1。此情可待成追忆，只是当时已惘然 2。
-   语法：需要注释的内容[^1]
-      [^1]: 注脚的解释
-   说明：在需要添加脚注的位置添加[^1]，然后在文本的任意位置添加脚注内容。脚注内容前需有与文本对应的脚注标签，不论校准内容添加在何处，最终显示时，脚注内容会被归类到文档的最后。脚注内容与脚注内容之间必须有一空行，否则失效。
-7. 锚点   
-   页面内的超链接，用来链接文档内部的某些元素，实现当前页面中的跳转。
-   样例：锚点跳转
-   在需要跳转的位置添加锚点，
-   语法：`<span id="标记名称">跳转到的地方</span>`
-   在需要点击跳转的位置，使用上面的 ID，格式类似超链接的形式：[锚点名称]（#标记名称）
-   说明：只要用 <> 把网址或者邮箱地址包起来，就自动转成链接。网址前必须有 http:// 或 https://。
-   ![在这里插入图片描述]（https://img-blog.csdnimg.cn/direct/e8c339204f0a4bd0858626593b9247ce.png） 锚点跳转到这里
-8. 列表
-   （1）无序列表   
-   语法：
-   > - 这是无序第一层
-   >   - 这是无序第二层
-   >     \_ 这是无序第三层
+## Markdown 介绍
 
-样例：
-• 这是无序第一层
-◦ 这是无序第二层
-■ 这是无序第三层
+如果你是一个新手，还不会编写 Markdown，请先阅读 [Markdown 介绍](https://theme-hope.vuejs.press/zh/cookbook/markdown/) 和 [Markdown 演示](https://theme-hope.vuejs.press/zh/cookbook/markdown/demo.html)。
 
-说明：无序列表使用星号 \_ 、加号 + 、减号 - 表示，符号与列表文字间需有空格。
+## Markdown 配置
 
-（2）有序列表   
-语法：
+VuePress 通过 Frontmatter 为每个 Markdown 页面引入配置。
 
-> 1.  这是有序第一层（1）
-> 2.  这是有序第一层（2）
+::: important Frontmatter
 
-样例：
+Frontmatter 是 VuePress 中很重要的一个概念，请阅读 [Frontmatter 介绍](https://theme-hope.vuejs.press/zh/cookbook/vuepress/page.html#front-matter) 了解详情。
 
-> 这是有序第一层（1） 2. 这是有序第一层（2） 3. ◦ 这是有序和无序列表嵌套使用（1） •  
-> 4. 这是有序和无序列表嵌套使用（2）
+:::
 
-说明：有序列表使用数字定义，用数字加英文句点表示有序列表，句点与列表文字间需有空格。列表可以嵌套，嵌套列表可以使用不同的符号。
+## Markdown 扩展
 
-（3）任务列表   
-语法： > 1. - [x] 已完成 > 2. - [ ] 待完成
+VuePress 会使用 [markdown-it](https://github.com/markdown-it/markdown-it) 来解析 Markdown 内容，因此可以借助于 markdown-it 插件来实现 [语法扩展](https://github.com/markdown-it/markdown-it#syntax-extensions) 。
 
-样例： 1. 已完成 2. 待完成  
-说明：注意 [ ] 内和 - 后的空格。
+### VuePress 扩展
 
-（4）定义列表   
-语法： > First Term > : This is the definition of the first term. > > Second Term > : This is one definition of the second term. > : This is another definition of the second term.
+为了丰富文档写作，VuePress 对 Markdown 语法进行了扩展。
 
-样例：
-First Term
-This is the definition of the first term.
-Second Term
-This is one definition of the second term.
-This is another definition of the second term.  
-说明：请在第一行上键入术语，在下一行，键入一个冒号，后跟一个空格和定义的内容。  
-9. 表格   
-语法：
+关于这些扩展，请阅读 [VuePress 中的 Markdown 扩展](https://theme-hope.vuejs.press/zh/cookbook/vuepress/markdown.html)。
 
-> | Column 1              |     Column 2      |               Column 2 |
-> | :-------------------- | :---------------: | ---------------------: |
-> | left-aligned 文本居左 | centered 文本居中 | right-aligned 文本居右 |
+### 主题扩展
 
-说明：第一行为表头；第二行分隔表头与主体，可以在第二行以 : 指定对其方式，在右边加为右对齐，在两边分别加为居中对齐，默认为左对齐；第三行开始每行为一个表格行；列于列之间用管道符 | 隔开。  
-10. 引用   
-样例：
+通过 VuePress 插件，主题扩展了更多 Markdown 语法，提供更加丰富的写作功能。
 
-> 这是引用样例
->
-> > 这是引用嵌套样例
-> >
-> > > 引用嵌套理论上可无限嵌套   
-> > > 语法：
-> > > 这是引用样例
-> > > 这是引用嵌套样例
-> > > 引用嵌套理论上可无限嵌套
+#### 选项卡
 
-说明：使用邮件风格大括号 > 的引用声明，符号后无需加空格。在被引用第地方直接使用 >，也可以只在整个段落的第一行前加 >。在引用的前后都要插入一个空白行 否则会导致之后的段落也被标记为引用，不论两端之间加入多少个空白行。引用可以多层嵌套只需根据不同的层次加不同数量的 >。  
-11. 分割线
-语法：_\*\* ， --- ， \_\_\_
-说明：分隔线须使用至少 3 3 3 个以上的 ∗ _ ∗ 或 − - − 或 _ \_ _ 来标记，行内不能有其他的字符，可以在标记符中间加上空格。
+::: tabs#fruit
+
+@tab apple
+
+Apple
+
+@tab banana
+
+Banana
+
+@tab orange
+
+Orange
+
+:::
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/content/tabs.html)
+
+#### 脚注
+
+此文字有脚注[^first].
+
+[^first]: 这是脚注内容
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/content/footnote.html)
+
+#### 导入文件
+
+<!-- @include: ./README.md{11-17} -->
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/content/include.html)
+
+#### TeX 语法
+
+$$
+\frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
+= \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
+$$
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/grammar/math.html)
+
+#### 任务列表
+
+- [x] 计划 1
+- [ ] 计划 2
+
+[查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/grammar/tasklist.html)
+
+### 图片增强
+
+支持为图片设置颜色模式和大小。
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/grammar/image.html)
+
+#### 上下角标
+
+19^th^ H~2~O
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/sup-sub.html)
+
+#### 组件
+
+```component VPCard
+title: Mr.Hope
+desc: Where there is light, there is hope
+logo: https://mister-hope.com/logo.svg
+link: https://mister-hope.com
+background: rgba(253, 230, 138, 0.15)
+```
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/component/grammar.html)
+
+#### 提示容器
+
+::: v-pre
+
+安全的在 Markdown 中使用 {{ variable }}。
+
+:::
+
+::: info 自定义标题
+
+信息容器，包含 `代码` 与 [链接](#提示容器)。
+
+```js
+const a = 1
+```
+
+:::
+
+::: tip 自定义标题
+
+提示容器
+
+:::
+
+::: warning 自定义标题
+
+警告容器
+
+:::
+
+::: caution 自定义标题
+
+危险容器
+
+:::
+
+::: details 自定义标题
+
+详情容器
+
+:::
+
+- [GitHub 警示](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/alert.html)
+- [提示框](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/hint.html)
+
+#### 自定义对齐
+
+::: center
+
+我是居中的
+
+:::
+
+::: right
+
+我在右对齐
+
+:::
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/align.html)
+
+#### 属性支持
+
+一个拥有 ID 的 **单词**{#word}。
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/attrs.html)
+
+#### 标记
+
+你可以标记 ==重要的内容== 。
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/mark.html)
+
+#### 剧透
+
+VuePress Theme Hope !!十分强大!!.
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/spoiler.html)
+
+#### 样式化
+
+向 Mr.Hope 捐赠一杯咖啡。 _Recommended_
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/stylize/stylize.html)
+
+#### 图表
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/chartjs.html" width="100%" height="450"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/chart/chartjs.html)
+
+#### ECharts
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/echarts.html" width="100%" height="800"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/chart/echarts.html)
+
+#### 流程图
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/flowchart.html" width="100%" height="450"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/chart/flowchart.html)
+
+#### MarkMap
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/markmap.html" width="100%" height="380"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/chart/markmap.html)
+
+#### Mermaid
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/mermaid.html" width="100%" height="620"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/chart/mermaid.html)
+
+#### PlantUML
+
+@startuml
+Alice -> Bob: 认证请求
+
+alt 成功情况
+
+    Bob -> Alice: 认证接受
+
+else 某种失败情况
+
+    Bob -> Alice: 认证失败
+    group 我自己的标签
+    Alice -> Log : 开始记录攻击日志
+        loop 1000次
+            Alice -> Bob: DNS 攻击
+        end
+    Alice -> Log : 结束记录攻击日志
+    end
+
+else 另一种失败
+
+    Bob -> Alice: 请重复
+
+end
+@enduml
+
+- [View Detail](https://theme-hope.vuejs.press/zh/guide/markdown/chart/plantuml.html)
+
+#### 代码块
+
+::: code-tabs
+
+@tab pnpm
+
+```bash
+pnpm add -D vuepress-theme-hope
+```
+
+@tab yarn
+
+```bash
+yarn add -D vuepress-theme-hope
+```
+
+@tab:active npm
+
+```bash
+npm i -D vuepress-theme-hope
+```
+
+:::
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/code/code-tabs.html)
+
+#### 代码演示
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/code-demo.html" width="100%" height="450"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/code/demo.html)
+
+#### 交互演示
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/playground.html" width="100%" height="480"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/code/playground.html)
+
+#### Kotlin 交互演示
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/kotlin-playground.html" width="100%" height="220"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/code/kotlin-playground.html)
+
+#### Sandpack 交互演示
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/sandpack.html" width="100%" height="380"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/code/sandpack.html)
+
+#### Vue 交互演示
+
+<iframe src="https://plugin-md-enhance-demo.vuejs.press/snippet/vue-playground.html" width="100%" height="380"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/code/vue-playground.html)
+
+#### 幻灯片
+
+<iframe src="https://ecosystem.vuejs.press/zh/plugins/markdown/revealjs/demo.html" width="100%" height="420"/>
+
+- [查看详情](https://theme-hope.vuejs.press/zh/guide/markdown/content/revealjs.html)
+
+`more` 注释之前的内容被视为文章摘要。
+
+<!-- more -->
+
+## 页面标题
+
+The first H1 title in Markdown will be regarded as page title.
+
+Markdown 中的第一个 H1 标题会被视为页面标题。
+
+你可以在 Markdown 的 Frontmatter 中设置页面标题。
+
+```md
+---
+title: 页面标题
+---
+```
+
+## 页面信息
+
+你可以在 Markdown 的 Frontmatter 中设置页面信息。
+
+- 作者设置为 Ms.Hope。
+- 写作日期为 2020 年 1 月 1 日
+- 分类为 “使用指南”
+- 标签为 “页面配置” 和 “使用指南”
+
+## 页面内容
+
+你可以自由在这里书写你的 Markdown。
+
+::: tip 图片引入
+
+- 你可以将图片和 Markdown 文件放置在一起使用相对路径进行引用。
+- 对于 `.vuepress/public` 文件夹的图片，请使用绝对链接 `/` 进行引用。
+
+:::
+
+## 组件
+
+每个 Markdown 页面都会被转换为一个 Vue 组件，这意味着你可以在 Markdown 中使用 Vue 语法：
+
+{{ 1 + 1 }}
+
+<!-- markdownlint-disable MD033 -->
+
+<ul>
+  <li v-for="i in 3">{{ i }}</li>
+</ul>
+
+<!-- markdownlint-enable MD033 -->
+
+你也可以创建并引入你自己的组件。
+
+<MyComponent />
+
+<script setup>
+import { defineComponent, h, ref } from 'vue';
+
+const MyComponent = defineComponent({
+  setup() {
+    const input = ref('Hello world!');
+    const onInput = (e) => {
+      input.value = e.target.value;
+    };
+
+    return () => [
+      h('p', [
+        h('span','输入: '),
+        h('input', {
+          value: input.value,
+          onInput,
+        }),
+      ]),
+      h('p', [h('span','输出: '), input.value]),
+    ];
+  },
+});
+</script>
+
+---
+
+主题包含一些有用的组件。这里是一些例子:
+
+- 文字结尾应该有深蓝色的 徽章文字 徽章。 <Badge text="徽章文字" color="#242378" />
+
+- 一个卡片:
+
+  ```component VPCard
+  title: Mr.Hope
+  desc: Where there is light, there is hope
+  logo: https://mister-hope.com/logo.svg
+  link: https://mister-hope.com
+  background: rgba(253, 230, 138, 0.15)
+  ```
