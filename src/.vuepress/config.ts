@@ -20,6 +20,7 @@ export default defineUserConfig({
   },
   head,
   theme: hopeTheme({
+    darkmode: "switch", // 或 "toggle", "auto", "enable", "disable"
     hostname: "xxxx",
     author: {
       name: "htong",

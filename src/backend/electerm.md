@@ -1,5 +1,6 @@
 ---
 title: Electerm
+article: false
 ---
 
 ## electerm 介绍与使用

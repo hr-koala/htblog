@@ -6,6 +6,10 @@
 
 > `npm init vuepress-theme-hope@latest mydocs`
 
+在你安装 Node.js 之后，在终端中输入下列命令启用 `corepack`:
+
+> corepack enable
+
 ## 手动创建文件文档
 
 ::: tabs
@@ -61,8 +65,11 @@ export default defineUserConfig({
 
 ```ts
 npm install
-npm run docs:dev
-npm run docs:build
+npm run docs:dev 启动开发服务器
+npm run docs:build 构建项目并输出
+npm run docs:clean-dev 清除缓存并启动开发服务器
+
+npx vp-update 升级主题和 VuePress 版本
 ```
 
 @tab yarn

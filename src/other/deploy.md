@@ -2,6 +2,8 @@
 title: deploy/cloudbaserc/env配置
 date: 2025-02-24
 author: htong
+star: false
+article: false
 ---
 
 ## deploy.sh

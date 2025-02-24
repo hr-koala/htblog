@@ -2,7 +2,7 @@
 # 这是文章的标题
 title: Markdown 展示
 # 你可以自定义封面图片
-cover: /assets/logo.png
+# cover: /assets/logo.png
 # 这是页面的图标
 icon: fa6-brands:markdown
 # 这是侧边栏的顺序

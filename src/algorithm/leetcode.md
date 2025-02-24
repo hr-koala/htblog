@@ -1,5 +1,11 @@
 ---
 title: leetcode
+article: false
+category:
+  - 算法
+# 一个页面可以有多个标签
+tag:
+  - leetcode
 ---
 
 ## 计算一个数组中每个元素除自身以外的所有元素的乘积。(给定一个整数数组 nums，返回一个新的数组 result，其中 result[i]是 nums[i]除自身以外的所有元素的乘积。)

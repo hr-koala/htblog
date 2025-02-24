@@ -1,5 +1,6 @@
 ---
 title: Xshell
+article: false
 ---
 
 ## Xshell 安装及与服务器建立连接过程
