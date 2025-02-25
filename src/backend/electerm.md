@@ -7,11 +7,11 @@ article: false
 
 ### 1.简介
 
-electerm 是一个跨平台的 SSH 客户端，可用于在 Windows，macOS 和 Linux 操作系统上连接和管理远程服务器。它支持多个 SSH 会话，可以同时打开多个标签页和窗口，并具有自动完成、自动重连、多种主题和自定义快捷键等功能，使得使用 SSH 会话更加高效方便。另外，electerm 还支持 SFTP 和端口转发等功能，可以方便地传输文件和管理网络连接。
+electerm 是一个跨平台的 `SSH` 客户端，可用于在 Windows，macOS 和 Linux 操作系统上连接和管理远程服务器。它支持多个 SSH 会话，可以同时打开多个标签页和窗口，并具有自动完成、自动重连、多种主题和自定义快捷键等功能，使得使用 SSH 会话更加高效方便。另外，electerm 还支持 SFTP 和端口转发等功能，可以方便地传输文件和管理网络连接。
 
 ### 2.高阶特性
 
-除了常规的 SSH 连接和 SFTP 文件传输，electerm 还提供了一些高级功能，例如：
+除了常规的 `SSH` 连接和 `SFTP` 文件传输，electerm 还提供了一些高级功能，例如：
 
 1. 多种认证方式：支持密码、密钥、双因素认证等多种方式进行身份验证。
 2. 内置终端：内置了多种终端模拟器，包括 xterm、VT100、VT220 等，支持 256 色和 unicode 编码。
@@ -23,9 +23,9 @@ electerm 是一个跨平台的 SSH 客户端，可用于在 Windows，macOS 和 
 
 ### 3.下载地址
 
-`https://github.com/electerm/electerm/releases`
+[下载地址](`https://github.com/electerm/electerm/releases`)
 
 ```ts
-#Mac OS用户:
+// Mac OS用户:
 brew install --cask electerm
 ```

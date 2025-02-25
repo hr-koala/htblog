@@ -2,7 +2,11 @@
 title: ThemeHope
 date: 2025-02-24
 article: false
+category:
+  - ThemeHope
 ---
+
+## [ThemeHope 地址](https://theme-hope.vuejs.press/zh/)
 
 新建 `vuepress-theme-hope` 项目:
 

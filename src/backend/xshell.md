@@ -5,7 +5,7 @@ article: false
 
 ## Xshell 安装及与服务器建立连接过程
 
-Xshell 是 Windows 下一款功能非常强大的安全终端模拟软件，支持 Telnet、Rlogin、SSH、SFTP、Serial 等协议，可以非常方便的对 linux 主机进行远程管理。
+`Xshell` 是 Windows 下一款功能非常强大的安全终端模拟软件，支持 Telnet、Rlogin、SSH、SFTP、Serial 等协议，可以非常方便的对 linux 主机进行远程管理。
 
 Xshell [下载地址：](`https://www.netsarang.com/products/xsh_overview.html`) 下载后按照提示进行安装即可（注意安装时授权选择“Free for Home/School”）
 

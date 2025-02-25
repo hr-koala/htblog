@@ -50,7 +50,7 @@ title: browser 的理解
 - 响应头：Set-Cookie、Date、Server、Cache-Control、Connection、Content-Encoding
 - 响应体
 
-```js
+```ts
 Content-Type: text/html
 ```
 

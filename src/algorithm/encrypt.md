@@ -1,5 +1,6 @@
 ---
 icon: lock
+order: 10
 category:
   - 使用指南
 tag:

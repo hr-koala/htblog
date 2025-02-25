@@ -21,7 +21,7 @@ export default defineUserConfig({
   head,
   theme: hopeTheme({
     darkmode: "switch", // 或 "toggle", "auto", "enable", "disable"
-    hostname: "xxxx",
+    hostname: "https://hr-koala.github.io/htblog",
     author: {
       name: "htong",
       url: "htong890@outlook.com",
@@ -37,7 +37,7 @@ export default defineUserConfig({
         // 侧边栏
         sidebar: sidebarZh,
         // 页脚
-        footer: "默认页脚",
+        footer: "开发者",
 
         displayFooter: true,
         blog: {
@@ -77,6 +77,8 @@ export default defineUserConfig({
         },
       },
     },
+    fullscreen: true,
+    // pure: true,
 
     // 加密配置
     encrypt: {

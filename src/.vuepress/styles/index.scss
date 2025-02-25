@@ -16,7 +16,7 @@ pre {
 }
 
 // dark
-html.dark {
+html[data-theme="dark"] {
   strong em,
   strong {
     color: #036aca;
@@ -26,7 +26,7 @@ html.dark {
   }
   code {
     word-break: break-word;
-    background-color: #fff5f5;
+    // background-color: #fff5f5;
     color: #ff502c;
   }
 }

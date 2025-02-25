@@ -12,33 +12,29 @@
 
 ## 手动创建文件文档
 
-::: tabs
-
-@tab npm
-
+```ts
 mkdir vuepress-demo
 cd vuepress-demo
 
 git init
 npm init
+```
 
-@tab pnpm
-
+```ts
 mkdir vuepress-demo
 cd vuepress-demo
 
 git init
 pnpm init
+```
 
-@tab yarn
-
+```ts
 mkdir vuepress-demo
 cd vuepress-demo
 
 git init
 yarn init
-
-:::
+```
 
 > 安装 vuepress
 > **_ npm install -D vuepress@next _**
