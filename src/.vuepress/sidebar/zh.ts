@@ -39,7 +39,7 @@ export const sidebarZh = sidebar({
       children: "structure",
     },
     {
-      text: "JAVASCRIPT",
+      text: "JavaScript",
       icon: "book",
       prefix: "javascript/",
       collapsible: true,
@@ -95,7 +95,7 @@ export const sidebarZh = sidebar({
       children: "structure",
     },
     {
-      text: "WEBPACK",
+      text: "WebPack",
       icon: "book",
       prefix: "webpack/",
       collapsible: true,
