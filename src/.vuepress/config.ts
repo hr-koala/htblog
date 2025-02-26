@@ -70,10 +70,11 @@ export default defineUserConfig({
       description: "一个前端开发者",
       intro: "/largeFront/",
       medias: {
-        Baidu: "https://baidu.com",
+        Baidu: "https://baidu.com/",
+        bilibili: "https://bilibili.com/",
         VuePressThemeHope: {
-          icon: "book",
-          link: "https://xxx",
+          icon: "bilibili",
+          link: "https://www.bilibili.com/",
         },
       },
     },

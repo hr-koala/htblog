@@ -1,7 +1,7 @@
 ---
 title: (bind/call/apply)方法
 date: 2025-02-26
-article: false
+# article: false
 tag:
   - 原型
 ---

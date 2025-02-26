@@ -1,6 +1,6 @@
 ---
 title: leetcode
-article: false
+# article: false
 order: 1
 category:
   - 算法

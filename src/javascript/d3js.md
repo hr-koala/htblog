@@ -1,7 +1,7 @@
 ---
 title: D3JS
 date: 2025-02-26
-article: false
+# article: false
 ---
 
 ## D3.js

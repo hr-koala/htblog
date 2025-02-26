@@ -1,7 +1,7 @@
 ---
 title: var/let/const
 date: 2025-02-26
-article: false
+# article: false
 ---
 
 ## 说说 var、let、const 之间的区别
