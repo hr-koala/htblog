@@ -1,5 +1,7 @@
 ---
 title: browser 的理解
+date: 2025-02-26
+article: false
 ---
 
 ## 一、缓存

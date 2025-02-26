@@ -1,5 +1,7 @@
 ---
 title: TypeORM 框架Connection数据库连接
+date: 2025-02-26
+article: false
 ---
 
 # TypeORM 框架中的 Connection 数据库连接池

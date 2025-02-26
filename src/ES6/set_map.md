@@ -1,5 +1,7 @@
 ---
 title: 理解Set、Map
+date: 2025-02-26
+article: false
 ---
 
 ## 怎么理解 ES6 新增 Set、Map 两种数据结构的？

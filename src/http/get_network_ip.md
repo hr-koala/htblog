@@ -1,5 +1,7 @@
 ---
 title: 获取本机IP
+date: 2025-02-26
+article: false
 ---
 
 ## node 为 vue 获取本机 IP 地址

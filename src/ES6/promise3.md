@@ -1,5 +1,7 @@
 ---
 title: promise 典型题
+date: 2025-02-26
+article: false
 ---
 
 ## 使用 Promise 实现每隔 1 秒输出 1,2,3

@@ -1,5 +1,7 @@
 ---
 title: 模拟实现 Promise
+date: 2025-02-26
+article: false
 ---
 
 ## 模拟实现 Promise

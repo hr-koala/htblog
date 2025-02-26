@@ -1,5 +1,7 @@
 ---
 title: NPM 配置
+date: 2025-02-26
+article: false
 ---
 
 ## npm i 报错 npm ERR! sha512-XXX，integrity checksum failed when using sha512: wanted sha512-XXXbut got sha

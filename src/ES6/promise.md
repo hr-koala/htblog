@@ -1,5 +1,7 @@
 ---
 title: Promise相关应用
+date: 2025-02-26
+article: false
 ---
 
 ## 怎么理解 ES6 中 Promise 的？使用场景？

@@ -1,5 +1,7 @@
 ---
 title: scss报错处理
+date: 2025-02-26
+article: false
 ---
 
 ## vue vite sass 报错处理 Sass 3.0.0

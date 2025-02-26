@@ -1,5 +1,7 @@
 ---
 title: NVM 配置
+date: 2025-02-26
+article: false
 ---
 
 ## nvm 安装、node 安装及 node 版本切换管理
