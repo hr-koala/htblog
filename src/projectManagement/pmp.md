@@ -24,9 +24,9 @@ article: false
 
 ##
 
-https://www.zhihu.com/tardis/zm/art/228244154?source_id=1003
+[参考文档](https://www.zhihu.com/tardis/zm/art/228244154?source_id=1003)
 
-https://www.zhihu.com/tardis/zm/art/672457182?source_id=1003
+[参考文档](https://www.zhihu.com/tardis/zm/art/672457182?source_id=1003)
 
 > 1.是否 PMI 和外专局双授权 2.是否提供 35 学时 PUD 证明 3.上课方式(线上还是线下)/时间 4.学习资料有哪些，哪些会邮寄 5.有没有课后答疑，答疑回复率；习题情况(习题库多少，教材库更新多少) 6.英文中文报名是否代报 7.课程有效期 8.三年续证 60PUD 是否赠送，怎么获取，是否收费 9.价格
 
