@@ -1,6 +1,10 @@
-# React 组件的理解
+---
+title: React 组件 的理解
+---
 
-## React 介绍
+## React 组件 的理解
+
+### React 介绍
 
 React 一个专注于`构建用户界面`的 JS 库.特点：1.声明式 UI(JSX)；2.组件化；3.跨平台(react-native)。
 核心库：`React, React-dom`;
@@ -28,7 +32,7 @@ React 一个专注于`构建用户界面`的 JS 库.特点：1.声明式 UI(JSX)
 3. JSX 中的语法更加贴近 JS 语法，属性名采用`驼峰命名`法 class -> className for -> htmlFor
 4. JSX 支持多行（换行），如果需要换行，需使用`()` 包裹，防止 bug 出现
 
-## React 事件机制
+### React 事件机制
 
 ```jsx
 <div onClick={this.handleClick.bind(this)}> 点我 </div>
@@ -46,7 +50,7 @@ React 并不是将 `click` 事件绑定到了 div 的**真实 `DOM`** 上，而�
 - 合成事件首先抹平了浏览器之间的**兼容**问题，另外这是一个跨浏览器原生事件包装器，赋予了**跨浏览器**开发的能力；
 - 对于原生浏览器事件来说，浏览器会给监听器创建一个事件对象。如果你有很多的事件监听，那么就需要分配很多的事件对象，造成高额的内存分配问题。但是对于合成事件来说，有一个**事件池**专门来管理它们的创建和销毁，当事件需要被使用时，就会从池子中复用对象，事件回调结束后，就会销毁事件对象上的属性，从而便于下次复用事件对象。
 
-## React 组件中怎么做事件代理？它的原理是什么？
+### React 组件中怎么做事件代理？它的原理是什么？
 
 React 基于 **Virtual DOM** 实现了一个 `SyntheticEvent` 层（合成事件层），定义的事件处理器会接收到一个 **合成事件对象的实例**，它符合 W3C 标准，且与原生的浏览器事件拥有同样的接口，支持冒泡机制，所有的事件都自动绑定在最外层上。
 
@@ -69,7 +73,7 @@ React V15 在渲染时，会递归比对 `VirtualDOM` 树，找出需要变动�
 **核心思想：**
 `Fiber` 也称协程或者纤程。它和线程并不一样，协程本身是没有并发或者并行能力的（需要配合线程），它只是**一种控制流程的让出机制**。让出 `CPU` 的执行权，让 `CPU` 能在这段时间执行其他的操作。渲染的过程可以被中断，可以将控制权交回浏览器，让位给高优先级的任务，浏览器空闲后再恢复渲染。
 
-## React.Component 和 React.PureComponent 的区别
+### React.Component 和 React.PureComponent 的区别
 
 `PureComponent` 表示一个纯组件，可以用来优化 React 程序，减少 `render` 函数执行的次数，从而提高组件的性能。
 
@@ -115,7 +119,7 @@ class CounterButton extends React.Component { //继承Component类
 
 与 PureComponent 不同的是，`React.memo()`是一个高阶组件，用于函数组件，通过对前后`props`进行**浅比较**，如果前后`props`不一致，该组件将重新渲染，反之，不进行渲染，使用缓存中的组件。
 
-## React 高阶组件是什么，和普通组件有什么区别，适用什么场景
+### React 高阶组件是什么，和普通组件有什么区别，适用什么场景
 
 官方解释 ∶  
 高阶组件（`HOC`）是 React 中用于**复用组件逻辑**的一种高级技巧。`HOC` 自身不是 `React API` 的一部分，它是一种基于 `React` 的组合特性而形成的**设计模式**。
@@ -273,7 +277,7 @@ export default withFetching(fetching('action'))(MovieList);
 export default withFetching(fetching('some-other-type'))(MovieList);
 ```
 
-## 对 componentWillReceiveProps 的理解
+### 对 componentWillReceiveProps 的理解
 
 该方法当 `props` 发生变化时执行，初始化 `render` 时不执行，在这个回调函数里面，你可以根据**属性**的变
 化，通过调用 `this.setState()` 来更新你的组件状态，旧的属性还是可以通过 `this.props` 来获取,这里调
@@ -336,7 +340,7 @@ React 的处理 `render` 的基本思维模式是每次一有变动就会去**�
 的，特别是在顶层 `setState` 一个微小的修改，默认会去遍历整棵树。尽管 React 使用高度优化的 `Diff` 算法，但
 是这个过程仍然会损耗性能.
 
-## React 如何判断什么时候重新渲染组件？
+### React 如何判断什么时候重新渲染组件？
 
 组件状态的改变可以因为 `props` 的改变，或者直接通过 `setState` 方法改变。组件获得新的状态，
 然后 React 决定是否应该重新渲染组件。只要组件的 `state` 发生变化，React 就会对组件进行重新渲
@@ -347,7 +351,7 @@ React 的处理 `render` 的基本思维模式是每次一有变动就会去**�
 新，也就是重新渲染）。所以需要重写 `shouldComponentUpdate` 方法让它根据情况返回 `true` 或
 者 `false` 来告诉 React 什么时候重新渲染什么时候跳过重新渲染。
 
-## React 声明组件有哪几种方法，有什么不同？
+### React 声明组件有哪几种方法，有什么不同？
 
 React 声明组件的**三种**方式：
 
@@ -401,7 +405,7 @@ class List extends Component {
 - `React.createClass` 创建的组件，其状态 `state` 是通过 `getInitialState` 方法来配置组件相关的状态；
 - `React.Component` 创建的组件，其状态 `state` 是在 `constructor` 中像初始化组件属性一样声明的。
 
-## 对有状态组件和无状态组件的理解及使用场景
+### 对有状态组件和无状态组件的理解及使用场景
 
 （1）**有状态组件**
 
@@ -491,7 +495,7 @@ const Bar = (props) => {
 - **无法控制组件的重渲染**，因为无法使用 `shouldComponentUpdate` 方法，当组件接受到新的属性时则
   会重渲染 (`React.memo()`是一个**高阶组件**，用于函数组件，通过对前后`props`进行**浅比较**，如果前后`props`不一致，该组件将重新渲染，反之，不进行渲染，使用**缓存**中的组件。避免父组件渲染子组件也渲染的性能消耗)
 
-## 对 React 中 Fragment 的理解，它的使用场景是什么？
+### 对 React 中 Fragment 的理解，它的使用场景是什么？
 
 在 React 中，组件返回的元素**只能**有一个根元素。为了不添加多余的`DOM`节点，我们可以使用`Fragment`标签来
 包裹所有的元素，`Fragment`标签不会渲染出任何元素。React 官方对 Fragment 的解释：
@@ -538,7 +542,7 @@ render() {
 
 <img src="/images/react/react2.png" alt="React 中 render" height = "350" align = "center"  />
 
-## 对 React 的插槽(Portals)的理解，如何使用，有哪些使用场景
+### 对 React 的插槽(Portals)的理解，如何使用，有哪些使用场景
 
 ::: tip React 官方对 `Portals` 的定义：
 Portal 提供了一种将子节点渲染到存在于父组件以外的 DOM 节点的优秀的方案
@@ -583,7 +587,7 @@ render() {
 }
 ```
 
-## 在 React 中如何避免不必要的 render？
+### 在 React 中如何避免不必要的 render？
 
 React 基于`虚拟 DOM` 和高效 `Diff 算法`的完美配合，实现了对 `DOM 最小粒度`的更新。大多数情况下，React 对
 DOM 的渲染效率足以业务日常。但在个别复杂业务场景下，性能问题依然会困扰我们。此时需要采取一些措施来提升运行性能，其很重要的一个方向，就是避免不必要的渲染（`Render`）。这里提下优化的点：
@@ -605,7 +609,7 @@ DOM 的渲染效率足以业务日常。但在个别复杂业务场景下，性�
   与 `PureComponent` 十分类似，但不同的是， `React.memo`用于**函数组件**。  
   **函数组件本身没有识别 prop 值的能力，每次父组件更新的时候都相当于是给子组件一个新的 prop 值**
 
-## 对 React-Intl 的理解，它的工作原理？
+### 对 React-Intl 的理解，它的工作原理？
 
 `React-intl`是雅虎的语言国际化开源项目`FormatJS`的一部分，通过其提供的组件和 API 可以与 ReactJS 绑定。
 
@@ -615,7 +619,7 @@ React-intl 提供了两种使用方法，一种是**引用 React 组件**，另�
 
 在`React-intl`中，可以配置不同的语言包，他的工作原理就是根据需要，在语言包之间进行切换。
 
-## React 中什么是受控组件和非控组件？
+### React 中什么是受控组件和非控组件？
 
 （1）**受控组件**
 
@@ -867,7 +871,7 @@ ReactDOM.render(<LikeButton />, document.getElementById("example"));
 - `constructor ()` 必须配上 `super()`, 如果要在 `constructor` 内部使用 `this.props` 就要 传入 `props` , 否则不用
 - JavaScript 中的 `bind` 每次都会返回一个新的函数, 为了性能等考虑, 尽量在 `constructor` 中绑定事件
 
-## React.forwardRef 是什么？它有什么作用？
+### React.forwardRef 是什么？它有什么作用？
 
 `React.forwardRef` 会创建一个 React 组件，这个组件能够将其接受的 `ref` 属性**转发**到其组件树下的另一个组件
 中。这种技术并不常见，但在以下两种场景中特别有用：
@@ -875,7 +879,7 @@ ReactDOM.render(<LikeButton />, document.getElementById("example"));
 - 转发 `refs` 到 `DOM` 组件
 - 在高阶组件中转发 `refs`
 
-## 类组件与函数组件有什么异同？
+### 类组件与函数组件有什么异同？
 
 **相同点**：
 

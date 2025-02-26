@@ -1,5 +1,5 @@
 ---
-title: (bind/call/apply)方法
+title: bind/call/apply方法
 date: 2025-02-26
 # article: false
 tag:
