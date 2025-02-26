@@ -1,5 +1,7 @@
 ---
 title: 防抖、节流
+date: 2025-02-26
+article: false
 ---
 
 ## 防抖 (debounce)

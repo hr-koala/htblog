@@ -1,5 +1,7 @@
 ---
 title: wangEditor
+date: 2025-02-26
+article: false
 ---
 
 [wangEditor](https://www.wangeditor.com/v5/getting-started.html)
@@ -133,8 +135,8 @@ editor.children 获取 JSON 内容。
 
 ## Vue2
 
-yarn add @wangeditor/editor --save // 安装 editor  
-yarn add @wangeditor/editor-for-vue --save // 安装 Vue2 组件(可选)
+> yarn add @wangeditor/editor --save // 安装 editor  
+> yarn add @wangeditor/editor-for-vue --save // 安装 Vue2 组件(可选)
 
 ```html
 <template>

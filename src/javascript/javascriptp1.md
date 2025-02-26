@@ -1,5 +1,7 @@
 ---
 title: JavaScript 方法
+date: 2025-02-26
+article: false
 ---
 
 ### preventDefault 方法有什么用?

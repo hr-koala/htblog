@@ -1,5 +1,7 @@
 ---
 title: fusejs
+date: 2025-02-26
+article: false
 ---
 
 ## `fuse.js`

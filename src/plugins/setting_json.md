@@ -1,5 +1,7 @@
 ---
 title: setting配置
+date: 2025-02-26
+article: false
 ---
 
 # setting.json

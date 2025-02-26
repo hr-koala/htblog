@@ -1,5 +1,7 @@
 ---
 title: JavaScript API
+date: 2025-02-26
+article: false
 ---
 
 ## javascript 字符串常用 api 使用汇总

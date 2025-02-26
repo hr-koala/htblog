@@ -1,6 +1,7 @@
 ---
 title: 生活
 date: 2025-02-25
+article: false
 ---
 
 ## 面部痤疮的问题

@@ -1,5 +1,7 @@
 ---
 title: new 操作符
+date: 2025-02-26
+article: false
 ---
 
 ## 实现一个 new 操作符

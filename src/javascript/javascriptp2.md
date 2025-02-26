@@ -1,5 +1,7 @@
 ---
 title: JavaScript算法
+date: 2025-02-26
+article: false
 ---
 
 ## 随机数组

@@ -1,5 +1,7 @@
 ---
 title: SockJS
+date: 2025-02-26
+article: false
 ---
 
 ## 在 vue 中使用 SockJS 实现 webSocket 通信

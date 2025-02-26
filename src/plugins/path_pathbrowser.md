@@ -1,5 +1,7 @@
 ---
 title: path-browserify包
+date: 2025-02-26
+article: false
 ---
 
 ## path path-browserify

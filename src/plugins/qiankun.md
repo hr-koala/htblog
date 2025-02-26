@@ -1,5 +1,7 @@
 ---
 title: qiankun
+date: 2025-02-26
+article: false
 ---
 
 # qiankun：vue3 + vite 从开发到部署实现微前端
