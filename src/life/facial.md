@@ -1,5 +1,5 @@
 ---
-title: 生活
+title: 面部痤疮
 date: 2025-02-25
 article: false
 ---
