@@ -1,5 +1,5 @@
 ---
-title: "viteRrrorQuestions"
+title: "viteErrorQuestions"
 ---
 
 ### 1.vite-plugin-mock 的 require is not defined 问题
