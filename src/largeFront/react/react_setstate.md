@@ -2,7 +2,7 @@
 title: setState
 ---
 
-# setState 的 “前世今生”
+# React SetState 的 “前世今生”
 
 ![setState](/images/react/react6.png)
 

@@ -6,6 +6,8 @@ category:
   - Plugin
 ---
 
+说说 Loader 和 Plugin 的区别?编写 Loader,Plugin 的思路?
+
 ## Loader 和 Plugin 有什么区别
 
 - Loader：直译为"加载器"。Webpack 将一切文件视为模块，但是 webpack 原生是只能解析 js 文件，如果想将其他文件也打包的话，就会用到 loader。 所以 Loader 的作用是让 webpack 拥有了加载和解析非 JavaScript 文件的能力。

@@ -4,6 +4,8 @@ date: 2025-02-26
 article: false
 ---
 
+Fun bind/call/apply 原理
+
 ## 实现一个 new 操作符
 
 new 操作符做了这些事：

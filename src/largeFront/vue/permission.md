@@ -1,8 +1,10 @@
 ---
-title: permission
+title: permission权限管理
 author: htong
 date: "2025-02-27"
 ---
+
+## vue 要做权限管理该怎么做？如果控制到按钮级别的权限怎么做？
 
 ![](https://static.vue-js.com/397e1fa0-4dad-11eb-ab90-d9ae814b240d.png)
 

@@ -4,6 +4,8 @@ author: htong
 date: "2025-02-27"
 ---
 
+什么是虚拟 DOM？如何实现一个虚拟 DOM?
+
 ## 一、什么是虚拟 DOM
 
 虚拟 DOM （`Virtual DOM` ）这个概念相信大家都不陌生，从 `React` 到 `Vue` ，虚拟 `DOM` 为这两个框架都带来了跨平台的能力（`React-Native` 和 `Weex`）

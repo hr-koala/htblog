@@ -4,6 +4,8 @@ author: htong
 date: "2025-02-27"
 ---
 
+SSR 解决了什么问题？有做过 SSR 吗？你是怎么做的?
+
 ## 一、是什么
 
 `Server-Side Rendering` 我们称其为`SSR`，意为服务端渲染

@@ -8,6 +8,8 @@ category:
   - 前端
 ---
 
+Vue 3.0 中 Treeshaking 特性?
+
 ## 一、是什么
 
 `Tree shaking` 是一种通过清除多余代码方式来优化项目打包体积的技术，专业术语叫 `Dead code elimination`
