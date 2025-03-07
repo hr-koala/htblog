@@ -1,5 +1,7 @@
 ---
 title: gaussDB
+date: 2025-02-27
+article: false
 ---
 
 1. 用于存储数据库相关的元信息的系统表是哪张表？(6 分)（pg_database）

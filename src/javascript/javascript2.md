@@ -4,6 +4,8 @@ date: 2025-02-26
 article: false
 ---
 
+函数? 对象? Symbol? HTTP?
+
 ### 函数的 3 种定义方法
 
 #### 1.函数声明

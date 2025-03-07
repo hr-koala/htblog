@@ -11,7 +11,7 @@ heroText: htong博客 # 主标题
 tagline: 人不狠立不稳 # 副标题
 projects:
   - icon: folder-open
-    name: 项目名称
+    name: github
     desc: 项目详细描述
     link: https://github.com/hr-koala/htblog
 
@@ -25,10 +25,10 @@ projects:
     desc: CSDN description
     link: https://blog.csdn.net/
 
-  - icon: newspaper
-    name: article name
+  - icon: home
+    name: home
     desc: Detailed description of the article
-    link: https://github.com/hr-koala/htblog
+    link: https://github.com/hr-koala/htblog/
 
 actions:
   - text: 快速上手
@@ -47,5 +47,3 @@ features:
 
 footer: MIT Licensed | Copyright © 2023-present
 ---
-
-相关配置文档请见 [博客主页](https://theme-hope.vuejs.press/zh/guide/blog/home.html)。
