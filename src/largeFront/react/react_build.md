@@ -24,7 +24,7 @@ title: 从零搭建Vite+React开发环境
 
 ```js
 // src/main.tsx;
-document.getElementById("root").append("React")
+document.getElementById("root").append("React");
 ```
 
 <!-- index.html -->
@@ -40,7 +40,7 @@ document.getElementById("root").append("React")
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      window.global = window
+      window.global = window;
     </script>
   </body>
 </html>
@@ -79,11 +79,11 @@ index.html 目前放在 dist 目录下，但它是手动创建的，下面会教
 
 ```tsx
 // vite.config.js
-import reactRefresh from "@vitejs/plugin-react-refresh"
+import reactRefresh from "@vitejs/plugin-react-refresh";
 export default defineConfig({
   // ...
   plugins: [reactRefresh()],
-})
+});
 ```
 
 ```tsx
@@ -124,7 +124,7 @@ export default defineConfig({
 
 ```tsx
 // src/App.jsx
-import React, { Component } from "react"
+import React, { Component } from "react";
 
 class App extends Component {
   render() {
@@ -132,16 +132,16 @@ class App extends Component {
       <div>
         <h1> Hello, World! </h1>
       </div>
-    )
+    );
   }
 }
-export default App
+export default App;
 
 // src/index.js
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App.jsx"
-ReactDOM.render(<App />, document.getElementById("root"))
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App.jsx";
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 - React Router
@@ -150,15 +150,15 @@ ReactDOM.render(<App />, document.getElementById("root"))
 
 ```tsx
 // src/index.js
-import React from "react"
-import ReactDOM from "react-dom"
-import { Router, Route, Link } from "react-router"
-import { createBrowserHistory } from "history"
-import App from "./App.jsx"
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router, Route, Link } from "react-router";
+import { createBrowserHistory } from "history";
+import App from "./App.jsx";
 
 const About = () => {
-  return <>About</>
-}
+  return <>About</>;
+};
 
 ReactDOM.render(
   <Router history={createBrowserHistory()}>
@@ -166,7 +166,7 @@ ReactDOM.render(
     <Route path="/about" component={About} />
   </Router>,
   document.getElementById("root")
-)
+);
 ```
 
 - MobX
@@ -182,33 +182,33 @@ ReactDOM.render(
 
 ```tsx
 // src/store.js
-import { observable, action, makeObservable } from "mobx"
+import { observable, action, makeObservable } from "mobx";
 
 class Store {
   constructor() {
-    makeObservable(this)
+    makeObservable(this);
   }
 
   @observable
-  count = 0
+  count = 0;
 
   @action("add")
   add = () => {
-    this.count = this.count + 1
-  }
+    this.count = this.count + 1;
+  };
 
   @action("reduce")
   reduce = () => {
-    this.count = this.count - 1
-  }
+    this.count = this.count - 1;
+  };
 }
-export default new Store()
+export default new Store();
 ```
 
 ```tsx
 // index.js
-import { Provider } from "mobx-react"
-import Store from "./store"
+import { Provider } from "mobx-react";
+import Store from "./store";
 // ...
 ReactDOM.render(
   <Provider store={Store}>
@@ -218,11 +218,11 @@ ReactDOM.render(
     </Router>
   </Provider>,
   document.getElementById("root")
-)
+);
 
 // src/App.jsx
-import React, { Component } from "react"
-import { observer, inject } from "mobx-react"
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
 
 @inject("store")
 @observer
@@ -234,10 +234,10 @@ class App extends Component {
         <button onClick={this.props.store.add}>add</button>
         <button onClick={this.props.store.reduce}>reduce</button>
       </div>
-    )
+    );
   }
 }
-export default App
+export default App;
 ```
 
 - Ant Design
@@ -246,10 +246,10 @@ export default App
 
 ```tsx
 // vite.config.js
-import { defineConfig } from "vite"
-import vitePluginImp from "vite-plugin-imp"
+import { defineConfig } from "vite";
+import vitePluginImp from "vite-plugin-imp";
 
-const path = require("path")
+const path = require("path");
 export default defineConfig({
   // ...
   plugins: [
@@ -270,11 +270,11 @@ export default defineConfig({
       },
     },
   },
-})
+});
 
 // src/App.jsx
-import { DatePicker } from "antd"
-import "antd/dist/antd.css"
+import { DatePicker } from "antd";
+import "antd/dist/antd.css";
 
 @inject("store")
 @observer
@@ -284,10 +284,10 @@ class App extends Component {
       <div>
         <DatePicker />
       </div>
-    )
+    );
   }
 }
-export default App
+export default App;
 ```
 
 - TypeScript
@@ -337,15 +337,15 @@ export default App
 
 ```tsx
 // src/App.tsx
-import React, { Component } from "react"
-import { observer, inject } from "mobx-react"
-import { DatePicker } from "antd"
-import "antd/dist/antd.css"
+import React, { Component } from "react";
+import { observer, inject } from "mobx-react";
+import { DatePicker } from "antd";
+import "antd/dist/antd.css";
 
 @inject("store")
 @observer
 class App extends Component {
-  props: any
+  props: any;
   render() {
     return (
       <div>
@@ -354,10 +354,10 @@ class App extends Component {
         <button onClick={this.props.store.add}>add</button>
         <button onClick={this.props.store.reduce}>reduce</button>
       </div>
-    )
+    );
   }
 }
-export default App
+export default App;
 ```
 
 - 代码规范
@@ -550,7 +550,7 @@ module.exports = {
   htmlWhitespaceSensitivity: "css",
   // 换行符使用 lf
   endOfLine: "lf",
-}
+};
 ```
 
 - stylelint
@@ -600,39 +600,28 @@ module.exports = {
     "selector-list-comma-newline-after": "always",
     "selector-pseudo-element-colon-notation": "single",
   },
-}
+};
 ```
 
 - lint-staged、pre-commit
 
 `npm install lint-staged prettier eslint pre-commit --save-dev`
 
-```tsx
+```json
 // package.json
 {
-// ...
-"scripts": {
-"lint:tsx": "eslint --ext .tsx src && eslint --ext .ts src",
-"lint:css": "stylelint --aei .less .css src",
-"precommit": "lint-staged",
-"precommit-msg": "echo 'Pre-commit checks...' && exit 0"
-},
-"pre-commit": [
-"precommit",
-"precommit-msg"
-],
-"lint-staged": {
-"_.{js,jsx,ts,tsx}": [
-"eslint --fix",
-"prettier --write",
-"git add"
-],
-"_.{css,less}": [
-"stylelint --fix",
-"prettier --write",
-"git add"
-]
-}
+  // ...
+  "scripts": {
+    "lint:tsx": "eslint --ext .tsx src && eslint --ext .ts src",
+    "lint:css": "stylelint --aei .less .css src",
+    "precommit": "lint-staged",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
+  },
+  "pre-commit": ["precommit", "precommit-msg"],
+  "lint-staged": {
+    "_.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write", "git add"],
+    "_.{css,less}": ["stylelint --fix", "prettier --write", "git add"]
+  }
 }
 ```
 
@@ -642,12 +631,12 @@ module.exports = {
 
 ```tsx
 // vite.config.ts
-import { defineConfig } from "vite"
-const ESLintPlugin = require("eslint-webpack-plugin")
+import { defineConfig } from "vite";
+const ESLintPlugin = require("eslint-webpack-plugin");
 
-const path = require("path")
+const path = require("path");
 export default defineConfig({
   // ...
   plugins: [new ESLintPlugin()],
-})
+});
 ```

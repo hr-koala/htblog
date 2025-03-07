@@ -28,18 +28,18 @@ export function updateContainer(
   callback: ?Function
 ): ExpirationTime {
   // 获取当前 更新的 Fiber 节点
-  const current = container.current
+  const current = container.current;
   // 获取当前的时间
-  const currentTime = requestCurrentTime()
+  const currentTime = requestCurrentTime();
   // 计算 ExpirationTime
-  const expirationTime = computeExpirationForFiber(currentTime, current)
+  const expirationTime = computeExpirationForFiber(currentTime, current);
   return updateContainerAtExpirationTime(
     element,
     container,
     parentComponent,
     expirationTime,
     callback
-  )
+  );
 }
 ```
 
@@ -48,29 +48,29 @@ export function updateContainer(
 首先我们看 Expiration Time 代码，这里只是涉及到计算方式
 
 ```tsx
-import MAX_SIGNED_31_BIT_INT from "./maxSigned31BitInt"
+import MAX_SIGNED_31_BIT_INT from "./maxSigned31BitInt";
 
-export type ExpirationTime = number
+export type ExpirationTime = number;
 
-export const NoWork = 0
-export const Sync = 1
-export const Never = MAX_SIGNED_31_BIT_INT
+export const NoWork = 0;
+export const Sync = 1;
+export const Never = MAX_SIGNED_31_BIT_INT;
 
-const UNIT_SIZE = 10
-const MAGIC_NUMBER_OFFSET = 2
+const UNIT_SIZE = 10;
+const MAGIC_NUMBER_OFFSET = 2;
 
 // 1 个过期时间单位代表 10ms.
 export function msToExpirationTime(ms: number): ExpirationTime {
   // 始终添加一个偏移量，这样我们就不会与 NoWork 的幻数发生冲突.
-  return ((ms / UNIT_SIZE) | 0) + MAGIC_NUMBER_OFFSET
+  return ((ms / UNIT_SIZE) | 0) + MAGIC_NUMBER_OFFSET;
 }
 
 export function expirationTimeToMs(expirationTime: ExpirationTime): number {
-  return (expirationTime - MAGIC_NUMBER_OFFSET) * UNIT_SIZE
+  return (expirationTime - MAGIC_NUMBER_OFFSET) * UNIT_SIZE;
 }
 
 function ceiling(num: number, precision: number): number {
-  return (((num / precision) | 0) + 1) * precision
+  return (((num / precision) | 0) + 1) * precision;
 }
 
 // 核心内容
@@ -86,11 +86,11 @@ function computeExpirationBucket(
       currentTime - MAGIC_NUMBER_OFFSET + expirationInMs / UNIT_SIZE,
       bucketSizeMs / UNIT_SIZE
     )
-  )
+  );
 }
 
-export const LOW_PRIORITY_EXPIRATION = 5000
-export const LOW_PRIORITY_BATCH_SIZE = 250
+export const LOW_PRIORITY_EXPIRATION = 5000;
+export const LOW_PRIORITY_BATCH_SIZE = 250;
 
 // 普通异步类型
 export function computeAsyncExpiration(
@@ -100,11 +100,11 @@ export function computeAsyncExpiration(
     currentTime,
     LOW_PRIORITY_EXPIRATION,
     LOW_PRIORITY_BATCH_SIZE
-  )
+  );
 }
 
-export const HIGH_PRIORITY_EXPIRATION = __DEV__ ? 500 : 150
-export const HIGH_PRIORITY_BATCH_SIZE = 100
+export const HIGH_PRIORITY_EXPIRATION = __DEV__ ? 500 : 150;
+export const HIGH_PRIORITY_BATCH_SIZE = 100;
 
 // Interactive 类型
 export function computeInteractiveExpiration(currentTime: ExpirationTime) {
@@ -112,7 +112,7 @@ export function computeInteractiveExpiration(currentTime: ExpirationTime) {
     currentTime,
     HIGH_PRIORITY_EXPIRATION,
     HIGH_PRIORITY_BATCH_SIZE
-  )
+  );
 }
 ```
 
@@ -140,11 +140,11 @@ export function computeInteractiveExpiration(currentTime: ExpirationTime) {
 代码
 
 ```tsx
-export const HIGH_PRIORITY_EXPIRATION = __DEV__ ? 500 : 150
-export const HIGH_PRIORITY_BATCH_SIZE = 100
+export const HIGH_PRIORITY_EXPIRATION = __DEV__ ? 500 : 150;
+export const HIGH_PRIORITY_BATCH_SIZE = 100;
 
-export const LOW_PRIORITY_EXPIRATION = 5000
-export const LOW_PRIORITY_BATCH_SIZE = 250
+export const LOW_PRIORITY_EXPIRATION = 5000;
+export const LOW_PRIORITY_BATCH_SIZE = 250;
 ```
 
 上面提到的 25 就是一个 **时间单元** 在这个时间单元内计算出来的 `Expiration-Time` 都是一样的，React 是 为了在同一个时间单元内更新的内容都是用相同的 Expiration-Time 这样更新会被合并.
@@ -166,7 +166,7 @@ React 这么设计抹相当于抹平了 25ms 内计算过期时间的误差，�
 ```tsx
 if (isRendering) {
   // We're already rendering. Return the most recently read time.
-  return currentSchedulerTime
+  return currentSchedulerTime;
 }
 ```
 
@@ -182,9 +182,9 @@ if (
 ) {
   // If there's no pending work, or if the pending work is offscreen, we can
   // read the current time without risk of tearing.
-  recomputeCurrentRendererTime()
-  currentSchedulerTime = currentRendererTime
-  return currentSchedulerTime
+  recomputeCurrentRendererTime();
+  currentSchedulerTime = currentRendererTime;
+  return currentSchedulerTime;
 }
 ```
 
