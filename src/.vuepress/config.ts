@@ -84,7 +84,11 @@ export default defineUserConfig({
     // 加密配置
     encrypt: {
       config: {
-        "/vue/axios.html": {
+        "/largeFront/": {
+          hint: "Password: 1234",
+          password: "1234",
+        },
+        "/financial/fund.html": {
           hint: "Password: 1234",
           password: "1234",
         },
