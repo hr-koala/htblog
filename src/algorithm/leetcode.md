@@ -1,4 +1,5 @@
 ---
+icon: lock
 title: leetcode
 # article: false
 order: 1
@@ -7,6 +8,7 @@ category:
 # 一个页面可以有多个标签
 tag:
   - leetcode
+  - 加密
 ---
 
 ### 计算一个数组中每个元素除自身以外的所有元素的乘积。
