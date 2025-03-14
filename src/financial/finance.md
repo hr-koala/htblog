@@ -145,9 +145,15 @@ MACD 上穿 0 轴后的第一次金叉，一般是 2 浪回调结束，3 浪上�
 
 在翻看大牛股的周线时，发现周线中 DIF 与 DEA 在 MACD 的 0 轴上方每次的金叉均是买点，而且每次金叉后 DIF 都能形成新的高点，（若出现次新高，则是卖点），是巧合还是必然，不得而知。如图：
 
-图一：![MACD 零轴上方](/images/financial/finance3.png)
-图二：![MACD 零轴上方](/images/financial/finance4.png)
-图三：![MACD 零轴上方](/images/financial/finance5.png)
-图四：![MACD 零轴上方](/images/financial/finance6.png)
-图五：![MACD 零轴上方](/images/financial/finance7.png)
-图六：![MACD 零轴上方](/images/financial/finance8.png)
+图一：
+![MACD 零轴上方](/images/financial/finance3.png)
+图二：
+<img src="/images/financial/finance4.png" alt="MACD 零轴上方" height="360" />
+图三：
+<img src="/images/financial/finance5.png" alt="MACD 零轴上方" height="360" />
+图四：
+<img src="/images/financial/finance6.png" alt="MACD 零轴上方" height="360" />
+图五：
+<img src="/images/financial/finance7.png" alt="MACD 零轴上方" height="360" />
+图六：
+<img src="/images/financial/finance8.png" alt="MACD 零轴上方" height="360" />
