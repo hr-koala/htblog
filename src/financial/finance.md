@@ -157,3 +157,12 @@ MACD 上穿 0 轴后的第一次金叉，一般是 2 浪回调结束，3 浪上�
 <img src="/images/financial/finance7.png" alt="MACD 零轴上方" height="360" />
 图六：
 <img src="/images/financial/finance8.png" alt="MACD 零轴上方" height="360" />
+
+**_`(A 点 - 低点) / 5 _ 12 + 低点 = 顶点`\***
+
+##
+
+- 三阴不破阳
+- 涨停缩量阴线
+- 涨停揉搓线
+- 涨停连阳线
