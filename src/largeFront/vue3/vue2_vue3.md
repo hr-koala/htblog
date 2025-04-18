@@ -98,14 +98,14 @@ Step4：更新代码
 ```tsx
 Vue.component("my-component", {
   // ...
-})
+});
 // 改为：
 
-import { createApp } from "vue"
-import MyComponent from "./MyComponent.vue"
+import { createApp } from "vue";
+import MyComponent from "./MyComponent.vue";
 
-const app = createApp({})
-app.component("my-component", MyComponent)
+const app = createApp({});
+app.component("my-component", MyComponent);
 ```
 
 更新钩子函数
@@ -121,7 +121,7 @@ export default {
   updated() {},
   beforeDestroy() {},
   destroyed() {},
-}
+};
 ```
 
 而在 Vue 3 中，一些钩子函数已经被移除，如 beforeCreate 和 beforeMount。同时，也新增了一些钩子函数，如 onBeforeMount 和 onUnmounted。具体变化如下：
@@ -174,26 +174,29 @@ export default {
     console.log(this.itemRefs)
   }
 }
-import { ref, onBeforeUpdate, onUpdated } from 'vue'
+```
+
+```tsx
+import { ref, onBeforeUpdate, onUpdated } from "vue";
 
 export default {
-setup() {
-let itemRefs = []
-const setItemRef = el => {
-itemRefs.push(el)
-}
-onBeforeUpdate(() => {
-itemRefs = []
-})
-onUpdated(() => {
-console.log(itemRefs)
-})
-return {
-itemRefs,
-setItemRef
-}
-}
-}
+  setup() {
+    let itemRefs = [];
+    const setItemRef = (el) => {
+      itemRefs.push(el);
+    };
+    onBeforeUpdate(() => {
+      itemRefs = [];
+    });
+    onUpdated(() => {
+      console.log(itemRefs);
+    });
+    return {
+      itemRefs,
+      setItemRef,
+    };
+  },
+};
 ```
 
 itemRefs 可以是对象，其 ref 会通过迭代的 key 被设置。 如果需要，itemRef 也可以是响应式的且可以被监听。
@@ -202,17 +205,17 @@ itemRefs 可以是对象，其 ref 会通过迭代的 key 被设置。 如果需
 Vue 3 中的函数式组件需要用 defineComponent 函数来定义，并使用 setup 函数来声明组件的逻辑：
 
 ```tsx
-import { defineComponent } from "vue"
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "MyFunctionalComponent",
   props: ["msg"],
   setup(props) {
     return () => {
-      return h("div", props.msg)
-    }
+      return h("div", props.msg);
+    };
   },
-})
+});
 ```
 
 其中，h 是创建虚拟节点的函数，不再像 Vue 2 中默认导入，需要手动从 vue 包中引入：
@@ -227,10 +230,10 @@ export default defineComponent({
 
 ```tsx
 // Vue 2
-Vue.component("my-component", () => import("./MyComponent.vue"))
+Vue.component("my-component", () => import("./MyComponent.vue"));
 
 // Vue 3
-const MyComponent = defineAsyncComponent(() => import("./MyComponent.vue"))
+const MyComponent = defineAsyncComponent(() => import("./MyComponent.vue"));
 ```
 
 在 Vue 3 中，我们不再需要使用 Vue.component() 来定义组件，而是使用 defineAsyncComponent() 函数来定义异步组件。该函数接受一个返回 Promise 对象的函数作为参数，这个 Promise 对象最终会 resolve 为一个组件定义。
@@ -295,11 +298,14 @@ console.log('New Value:', newValue)
 console.log('Old Value:', oldValue)
 }
 }
+```
+
 我们要在 watch 选项中定义一个函数，并通过该函数来监听数据变化。这种方式比较繁琐，而且不够直观。
 
 Vue 3 中的 Watch
 在 Vue 3 中，我们可以使用新的 watchEffect API 来监听一个变量：
 
+```tsx
 import { watchEffect } from 'vue'
 
 setup() {
@@ -313,11 +319,14 @@ return {
 message
 }
 }
+```
+
 我们可以使用 watchEffect API 来监听响应式变量。我们只需将变量放在 watchEffect 函数中即可，Vue 会自动追踪变量的依赖，并在变量发生变化时重新运行该函数。这就相当于将 Vue 2 的 watch 选项和 computed 选项合并到了一起。
 
 监听多个变量
 在 Vue 3 中，我们可以使用 watch 函数来监听多个变量：
 
+```tsx
 import { watch } from 'vue'
 
 setup() {
@@ -334,11 +343,14 @@ message,
 name
 }
 }
+```
+
 在 Vue 3 中，我们可以将多个响应式变量放在一个数组中传递给 watch 函数。当其中任意一个变量发生变化时，watch 函数都会重新运行。与 Vue 2 不同的是，在 Vue 3 中，watch 函数需要接收两个参数：新值和旧值。
 
 懒执行
 在 Vue 3 中，我们可以通过将 lazy 选项设置为 true 来使 watchEffect 函数变为懒执行：
 
+```tsx
 import { watchEffect } from 'vue'
 
 setup() {
@@ -353,11 +365,14 @@ return {
 message
 }
 }
+```
+
 在 Vue 3 中，我们可以通过将 lazy 选项设置为 true 来使 watchEffect 函数变为懒执行。这意味着只有在依赖项发生变化时才会运行该函数。
 
 取消监听
 在 Vue 3 中，我们可以通过调用 watchEffect 函数返回的句柄来取消监听：
 
+```tsx
 import { watchEffect } from 'vue'
 
 setup() {
@@ -371,6 +386,8 @@ return {
 message
 }
 }
+```
+
 在 Vue 3 中，我们可以通过调用 watchEffect 函数返回的句柄来取消监听。这意味着当我们不再需要监听变量时，可以随时停止监听。
 
 在 Vue 3 中，watch API 进行了升级，语法和用法都比 Vue 2 更为直观、简洁。我们可以使用 watchEffect 函数来监听响应式变量，并使用 watch 函数来监听多个变量。而且，在 Vue 3 中，我们还可以将 watchEffect 函数变为懒执行，并且随时取消。
@@ -383,17 +400,21 @@ message
 Vue 2 中的全局属性挂载
 在 Vue 2 中，我们可以通过 Vue.prototype 来挂载属性、方法、甚至是插件，以便在组件中进行全局访问。
 
+```tsx
 // main.js
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
 
-Vue.prototype.$appName = 'MyApp'
+Vue.prototype.$appName = "MyApp";
 
 new Vue({
-render: h => h(App),
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
+```
+
 在上面的代码中，我们将 appName 属性挂载到 Vue 原型上，并将其设置为 MyApp。因此，在应用程序中的任何组件中，我们都可以通过 this.appName 来访问它：
 
+```tsx
 <template>
   <div>{{ $appName }}</div>
 </template>
@@ -405,6 +426,7 @@ export default {
   }
 }
 </script>
+```
 
 虽然这种方法非常简单易用，但在 Vue 3 中已不再适用。
 
@@ -413,17 +435,21 @@ Vue 3 中的全局属性挂载
 
 一种替代方法是使用 provide/inject。在父级组件中，我们可以提供一个属性或方法，并通过 inject 注入到子组件中。
 
+```tsx
 // main.js
-import { createApp, provide } from 'vue'
-import App from './App.vue'
+import { createApp, provide } from "vue";
+import App from "./App.vue";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.provide('appName', 'MyApp')
+app.provide("appName", "MyApp");
 
-app.mount('#app')
+app.mount("#app");
+```
+
 在上面的代码中，我们使用 createApp 方法创建 Vue 应用程序实例，并使用 provide 方法将 appName 属性提供给它。现在，在任何后代组件中，我们都可以使用 inject 来访问它：
 
+```tsx
 <template>
   <div>{{ appName }}</div>
 </template>
@@ -442,6 +468,7 @@ export default {
   }
 }
 </script>
+```
 
 虽然这种方法看起来有些麻烦，但它确实提供了更好的可维护性和灵活性。在大型应用程序中，我们可以使用这种方法来传递多个属性和方法，并且可以在各个组件之间轻松地进行更改和更新。
 
@@ -452,6 +479,7 @@ Vue 2 中的插槽有两种类型：作用域插槽（scoped slot）和普通插
 
 首先，让我们来看一下 Vue 2 中普通插槽的用法：
 
+```tsx
 <!-- parent component -->
 <div>
   <slot></slot>
@@ -464,15 +492,21 @@ Vue 2 中的插槽有两种类型：作用域插槽（scoped slot）和普通插
     <p>This will be inserted into the parent's slot</p>
   </div>
 </template>
+```
+
 在上面的代码中，父组件包含一个 &lt;slot>` 元素，它允许子组件将内容插入到该元素中。子组件可以像这样使用该插槽：
 
+```tsx
 <template>
   <parent-component>
     <h2>Inserted Content</h2>
   </parent-component>
 </template>
-在 Vue 3 中，   `&lt; slot >`   元素仍然存在，但是它不再具有作用域功能。相反，你需要使用 v-bind 指令来传递 props 到插槽内容中。
+```
 
+在 Vue 3 中， `&lt; slot >` 元素仍然存在，但是它不再具有作用域功能。相反，你需要使用 v-bind 指令来传递 props 到插槽内容中。
+
+```tsx
 <!-- parent component -->
 <div>
   <slot msg="Hello from Parent"></slot>
@@ -485,10 +519,13 @@ Vue 2 中的插槽有两种类型：作用域插槽（scoped slot）和普通插
     <p>{{ $slots.default({msg: 'Hello from Child'}) }}</p>
   </div>
 </template>
+```
+
 在上面的代码中，父组件将一个名为 msg 的 props 传递给了插槽。子组件使用 $slots.default 访问该插槽，并将一个对象作为参数传递给它。
 
 父组件和子组件都可以访问 msg 这个 prop。在父组件中，你可以这样访问：
 
+```tsx
 <template>
   <parent-component>
     <template #default="slotProps">
@@ -496,14 +533,19 @@ Vue 2 中的插槽有两种类型：作用域插槽（scoped slot）和普通插
     </template>
   </parent-component>
 </template>
+```
+
 在子组件中，你可以这样访问：
 
+```tsx
 <template>
   <div>
     <h1>Child Component</h1>
     <p>{{ $slots.default({msg: 'Hello from Child'}) }}</p>
   </div>
 </template>
+```
+
 需要注意的是，在 Vue 3 中，你必须使用具名插槽（named slot）来传递 props 到插槽内容中。如果你没有给插槽命名，那么在实践中就会出现问题。
 
 在 Vue 3 中，插槽的用法发生了变化。你需要使用 < slot> 元素来定义插槽，并使用 v-bind 指令传递 props 到插槽内容中。需要注意的是，你必须使用具名插槽来传递 props，否则会出现问题。
@@ -542,62 +584,72 @@ Vue 3 中的 v-model 指令经过了很多改进，这些改进使得双向绑�
 更新 Vue Router
 Vue 3 中没有 $route 和 $router 对象，而是使用 useRouter() 和 useRoute() 函数来获取当前的路由信息。因此，在路由文件中需要做出如下修改：
 
-import { createRouter, createWebHistory } from 'vue-router'
+```tsx
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
-history: createWebHistory(),
-routes: [
-// 路由规则
-]
-})
+  history: createWebHistory(),
+  routes: [
+    // 路由规则
+  ],
+});
 
-export default router
+export default router;
+```
+
 在组件中使用 $route 和 $router 时，需要修改为使用 useRoute() 和 useRouter() 获取当前的路由信息和路由对象。例如：
 
-import { useRoute, useRouter } from 'vue-router'
+```tsx
+import { useRoute, useRouter } from "vue-router";
 
 export default {
-setup() {
-const route = useRoute()
-const router = useRouter()
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
 
     // 使用 route 和 router 对象
+  },
+};
+```
 
-}
-}
 更新 Vuex
 Vuex 4 中使用 createStore() 函数来创建 Store 实例，同时在 setup 函数中使用 useStore() 函数获取 Store 对象。因此，在 store 文件中需要做出如下修改：
 
-import { createStore } from 'vuex'
+```tsx
+import { createStore } from "vuex";
 
 const store = createStore({
-state: {
-// 状态数据
-},
-mutations: {
-// 修改状态的方法
-},
-actions: {
-// 异步操作
-},
-modules: {
-// 子模块
-}
-})
+  state: {
+    // 状态数据
+  },
+  mutations: {
+    // 修改状态的方法
+  },
+  actions: {
+    // 异步操作
+  },
+  modules: {
+    // 子模块
+  },
+});
 
-export default store
+export default store;
+```
+
 在组件中使用 Vuex 时，需要使用 useStore() 函数获取 Store 对象。例如：
 
-import { useStore } from 'vuex'
+```tsx
+import { useStore } from "vuex";
 
 export default {
-setup() {
-const store = useStore()
+  setup() {
+    const store = useStore();
 
     // 使用 store 对象
+  },
+};
+```
 
-}
-}
 更新/升级 Pinia
 Vue 2 中的 Vuex 是 Vue.js 官方提供的状态管理工具，而 Vue 3 推荐使用 Pinia 作为状态管理库。在将 Vue 2 的 Vuex 升级为 Vue 3 的 Pinia 时，需要了解 Pinia 的 API 和一些概念。以下是一些步骤和注意事项：
 
@@ -608,16 +660,20 @@ npm install pinia
 创建 Pinia 实例
 在 src 目录下创建一个名为 store.js 的文件，并创建一个名为 createStore 的函数，用于创建 Pinia 实例。该函数应返回一个带有所有模块的对象。
 
-import { createPinia } from 'pinia'
+```tsx
+import { createPinia } from "pinia";
 
-const store = createPinia()
+const store = createPinia();
 
 export function createStore() {
-return store
+  return store;
 }
+```
+
 重构模块文件
 对于每个 Vuex 模块，在单独的文件中定义一个对象，该对象包含状态、操作、getters 等属性。在这些对象中使用 defineStore 函数替换原有的 Vuex.Store 构造函数，详细参数的使用方法可以参考官方文档。
 
+```tsx
 import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore({
@@ -639,46 +695,54 @@ return this.count \* 2
 }
 }
 })
+```
+
 导入和使用 store
 在 main.js 中导入 createStore 函数，并在 Vue 根实例中使用它。可以使用 app.config.globalProperties.$store 将 Pinia 实例挂载到全局，以便于在组件中访问。
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import { createStore } from './store'
+```tsx
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createStore } from "./store";
 
-const app = createApp(App)
+const app = createApp(App);
 
 // 注册 Pinia 实例
-app.use(createStore())
+app.use(createStore());
 
 // 挂载 Pinia 实例到全局
-app.config.globalProperties.$store = store
+app.config.globalProperties.$store = store;
 
-app.mount('#app')
+app.mount("#app");
+```
+
 组件中使用 Pinia
 在组件中可以通过 useStore() 函数来获取 Pinia 实例。然后可以像 Vuex 一样使用状态、操作、getters 等属性。
 
-import { useStore } from 'pinia'
+```tsx
+import { useStore } from "pinia";
 
 export default {
-setup() {
-const store = useStore()
+  setup() {
+    const store = useStore();
 
-// 获取状态
-const count = store.state.count
+    // 获取状态
+    const count = store.state.count;
 
-// 调用操作
-store.actions.increment()
+    // 调用操作
+    store.actions.increment();
 
-// 计算属性
-const doubleCount = store.getters.doubleCount
+    // 计算属性
+    const doubleCount = store.getters.doubleCount;
 
-return {
-count,
-doubleCount
-}
-}
-}
+    return {
+      count,
+      doubleCount,
+    };
+  },
+};
+```
+
 Step5：测试和调试
 升级完成后，我们需要对项目进行测试和调试，以确保项目在新版本的 Vue 中能够正常运行 。具体操作如下：
 
@@ -706,6 +770,8 @@ Vue 3 的升级需要谨慎对待，但也是值得尝试的。希望本文的�
 文中列举的更新栗子都是目前在升级项目中接触到的，若对 Vue 2 升级 Vue 3 其它升级方面感兴趣的可以分享交流，我也会同步更新此文档。
 
 [gogocode](https://gogocode.io/zh/docs/vue/element-ui-to-element-plus)
+
+```
 
 ```
 
