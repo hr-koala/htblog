@@ -113,7 +113,7 @@ module.exports = {
 html 的配置
 通过 html-webpack-plugin 可以自动生成一个模板或者指定一个 html 作为模板。webpack 会将同步模块注入到这个模板。在生产环境时，还可以压缩这个 html。
 
-> npm install -D html-webpack-plugin
+> `npm install -D html-webpack-plugin`
 
 ```js
 // webpack.base.conf.js
@@ -138,48 +138,50 @@ module.exports = {
 babel 配置
 babel 用来将 es6+ 的语法转换成低版本的 js，使之可以在低版本的浏览器上运行。
 
-````js
-npm install -D babel-loader @babel/preset-env @babel/core
+```js
+// `npm install -D babel-loader @babel/preset-env @babel/core`
 
-npm install --save core-js@3
+// `npm install --save core-js@3`
 // webpack.base.config.js
 
 module.exports = {
-module: {
-rules: [
-{
-test: /\.js$/,
-use: ['babel-loader?cacheDirectory=true'],
-include: path.resolve(\_\_dirname, '../src'),
-exclude: /(node_modules)/
-},
-]
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader?cacheDirectory=true'],
+        include: path.resolve(\_\_dirname, '../src'),
+        exclude: /(node_modules)/
+        },
+    ]
+  }
 }
-}
-```js
+```
+
 在根目录新增 .babelrc 文件。以下配置就能实现 polyfill 的按需引入。
-```js
+
+```json
 // .babelrc
 
 {
-"presets": [
-[
-"@babel/preset-env",
-{
-"useBuiltIns": "usage",
-"corejs": 3
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
+    ]
+  ]
 }
-]
-]
-}
-````
+```
 
 另一个实现 polyfill 按需引入的方案是 @babel/plugin-transform-runtime + @babel/runtime + @babel/runtime-corejs3。
 
 ```js
-npm install --save-dev @babel/plugin-transform-runtime
+`npm install --save-dev @babel/plugin-transform-runtime`
 
-npm install --save @babel/runtime @babel/runtime-corejs3
+`npm install --save @babel/runtime @babel/runtime-corejs3`
 // .babelrc
 
 {
@@ -198,7 +200,7 @@ vue-loader 用来处理 .vue 文件。v15 后的配置更加简单，原先需�
 
 ```js
 // webpack.base.conf.js
-const { VueLoaderPlugin } = require("vue-loader")
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
   module: {
@@ -218,7 +220,7 @@ module.exports = {
       // ...
     },
   },
-}
+};
 ```
 
 同时将配置中使用 style-loader 的地方替换成 vue-style-loader。
@@ -326,7 +328,7 @@ minimize 开启优化，TerserPlugin 配置 js 压缩的相关参数。splitChun
 ```js
 // webpack.prod.conf.js
 
-const TerserPlugin = require("terser-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   optimization: {
@@ -353,7 +355,7 @@ module.exports = {
       },
     },
   },
-}
+};
 ```
 
 css & sass 的配置
@@ -391,7 +393,7 @@ module: {
       test: /\.css$/,
       use: ["style-loader", "css-loader", "postcss-loader"],
     },
-  ]
+  ];
 }
 ```
 
@@ -402,7 +404,7 @@ module: {
 
 module.exports = {
   plugins: [require("autoprefixer")],
-}
+};
 ```
 
 生产环境的配置会有所不同。生产环境需要将 css 抽离成单独的文件，避免 js 文件体积过大。且需要压缩体积。
