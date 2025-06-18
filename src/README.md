@@ -13,7 +13,7 @@ projects:
   - icon: folder-open
     name: github
     desc: 项目详细描述
-    link: https://github.com/hr-koala/htblog
+    link: https://hr-koala.github.io/htblog/
 
   - icon: link
     name: Gitee
