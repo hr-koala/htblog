@@ -88,9 +88,9 @@ export default defineUserConfig({
           hint: "Password: 1234",
           password: "1234",
         },
-        "/financial/fund.html": {
+        "/financial/": {
           hint: "Password: 1234",
-          password: "1234",
+          password: "123456",
         },
       },
     },
