@@ -25,7 +25,7 @@ article: false
 
 异步流程允许程序在执行过程中**非阻塞地处理多个任务**，提高了程序的效率和用户体验。然而，它也需要更复杂的控制流程，因此需要小心处理回调地狱和异步错误处理等问题。
 
-## [微任务宏任务](`/es6/promise2.md#事件循环-event-loop`)
+## [微任务宏任务]`/es6/promise2.md#事件循环-event-loop`
 
 微任务（`Microtask`）和宏任务（`Macrotask`）是与事件循环（`Event Loop`）相关的两个重要概念，用于管理异步操作和任务执行的顺序。
 
@@ -78,7 +78,7 @@ article: false
 
 **钻石问题**：比如说 b 和 c 都继承自 a，d 继承自 b 和 c，那么 d 里面就会有同一个方法来自于两个两个祖先，那么当在 d 中调用这个方法时就会出现逻辑问题，到底是调用 b 的呢还是 c 的呢？java 就是看到了 c++多继承的问题所以就干脆不允许多继承了，js 因为自身的灵活性，我们依然可以通过一些方式来实现多继承(很多地方叫做 mixin，实际上听起来更正确)。
 
-## [promise,async await](`/es6/promise2.md`)
+## [promise,async await]`/es6/promise2.md`
 
 `Promise` 和 `async/await` 是 JavaScript 中用于处理异步操作的两种不同的机制，它们都旨在让异步代码更加可读和易于管理。
 
