@@ -2,11 +2,11 @@
 
 
 一、实现方法
-1. docx-preview
-Vue3 中使用 docx-preview 预览 Word 文档
+1. `docx-preview`
+Vue3 中使用 `docx-preview` 预览 Word 文档
 1.1 基本用法示例
 
-docx-preview 的核心方法是 renderAsync，它接受 Word 文档数据（支持 Blob、ArrayBuffer 等类型）和一个 DOM 容器元素。
+`docx-preview` 的核心方法是 renderAsync，它接受 Word 文档数据（支持 Blob、ArrayBuffer 等类型）和一个 DOM 容器元素。
 
 1. 在 Vue 项目中使用
 
@@ -823,7 +823,6 @@ import { defineComponent, ref } from 'vue'
 // 引入组件及其样式
 import VueOfficeDocx from '@vue-office/docx'
 import '@vue-office/docx/lib/index.css'
-
 export default defineComponent({
   components: {
     VueOfficeDocx
@@ -1091,6 +1090,7 @@ export default defineConfig({
   }
 })
 ```
+```
 总之，vue-demi 是一个旨在帮助开发者用一套代码编写同时支持 Vue 2 和 Vue 3 的通用 Vue 库的工具箱，它通过自动处理版本差异和 API 兼容性问题，让开发者能更专注于逻辑本身，从而提高开发效率，降低维护成本。
 
 在 Vue 3 项目中安装 @vue-office/docx 时，通常也需要安装 vue-demi。这是因为 vue-demi 是 vue-office 系列组件正常工作的重要桥梁。
@@ -1121,8 +1121,8 @@ vue-demi 的设计目的就是为了让像 @vue-office/docx 这样的库用一�
 如果你的项目是 Vue 2.7 或更高版本，它也内置了 Composition API，因此不需要再安装 @vue/composition-api。
 
 如果你的项目是 Vue 2.6 或更低版本，为了使用基于 Composition API 开发的库，你就必须额外安装 @vue/composition-api，并在项目的入口文件（如 main.js）中显式启用它：
-
-> npm install @vue/composition-api
+```
+> `npm install @vue/composition-api`
 ```javascript
 
 // 在 main.js 中
@@ -1579,4 +1579,4 @@ const doc = new jsPDF();
         doc.text(displayText.value, 20, 40);
         const filename = `${realRivalName || "报告"}_智能纪要.pdf`;
         doc.save(filename);
-        ```
+```
