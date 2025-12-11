@@ -1,8 +1,8 @@
-import { defineUserConfig } from "vuepress"
-import { hopeTheme } from "vuepress-theme-hope"
-import { head } from "./head.ts"
-import { navbarZh } from "./navbar/index.ts"
-import { sidebarZh } from "./sidebar/index.ts"
+import { defineUserConfig } from "vuepress";
+import { hopeTheme } from "vuepress-theme-hope";
+import { head } from "./head.ts";
+import { navbarZh } from "./navbar/index.ts";
+import { sidebarZh } from "./sidebar/index.ts";
 
 export default defineUserConfig({
   base: "/htblog/",
@@ -92,6 +92,10 @@ export default defineUserConfig({
           hint: "Password: 1234",
           password: "123456",
         },
+        "/life/": {
+          hint: "Password: 1234",
+          password: "134652",
+        },
       },
     },
 
@@ -127,7 +131,7 @@ export default defineUserConfig({
                 tag: "Badge",
                 attrs: { type: "tip" },
                 content: "Recommended",
-              }
+              };
           },
         },
       ],
@@ -255,4 +259,4 @@ export default defineUserConfig({
 
   // 和 PWA 一起启用
   // shouldPrefetch: false,
-})
+});
