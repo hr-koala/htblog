@@ -96,6 +96,18 @@ export default defineUserConfig({
           hint: "Password: 1234",
           password: "134652",
         },
+        "/szkingdom/": {
+          hint: "Password: kingdom",
+          password: "134652",
+        },
+        "/travel/": {
+          hint: "Password: travel",
+          password: "134652",
+        },
+        "/writings/": {
+          hint: "Password: writings",
+          password: "134652",
+        },
       },
     },
 
