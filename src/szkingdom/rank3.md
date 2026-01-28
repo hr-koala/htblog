@@ -1,3 +1,6 @@
+---
+title: 'JZ-P3'
+---
 ## 页面设计
 
 1. CSS的 :root 伪类选择器
@@ -554,3 +557,364 @@ DOM（Document Object Model）是前端开发的基石，却常被开发者视�
 框架的底层依赖：React/Vue的虚拟DOM、Svelte的编译优化，最终仍要回归真实DOM操作；
 性能的关键瓶颈：不当的DOM操作可能引发页面重排/重绘，导致卡顿（如频繁appendChild）；
 跨平台开发的桥梁：DOM API是浏览器、Electron、Puppeteer等技术的通用语言。
+
+## console：日志调试，快速验证逻辑
+适用场景：简单逻辑检查、数据格式验证、线上问题排查
+核心技巧：
+- 结构化日志：`console.log({ userId, orderId })` 替代松散输出
+- 分类日志：`console.debug / console.warn / console.error` 分级管理
+- 性能日志：`console.time('fetch') + console.timeEnd('fetch')` 测量执行时间
+- 高级输出：
+- `console.table(data)` —— 表格化展示数组/对象
+- `console.dir(element, { depth: null })` —— 深度打印 DOM 或嵌套对象
+
+:::
+Elements：DOM 结构查看与实时编辑、CSS 调试、盒模型分析
+Console：执行 JS、查看日志、捕获错误、调试网络请求
+Sources：断点调试、Source Map 映射、调用栈追踪
+Network：HTTP 请求分析、性能瀑布图、模拟慢速网络
+Application：Storage（LocalStorage/Cookie）、Service Workers 调试
+Performance：页面运行时性能分析（FPS、CPU、内存）
+Memory：堆内存快照、内存泄漏检测
+:::
+
+## 性能监控与优化（Performance）
+性能优化是前端开发的核心竞争力之一，直接影响用户体验、SEO 排名和业务转化率。浏览器的 Performance、Lighthouse 和 Memory 工具提供了完整的性能分析能力，本部分将系统讲解如何利用它们定位和解决问题。
+关键指标分析
+LCP (最大内容渲染时间)：优化图片/字体加载
+CLS (布局偏移)：检查动态插入元素的尺寸是否稳定
+工具链实践
+Lighthouse 自动化评分 + 生成优化报告
+Chrome User Experience Report 分析真实用户性能数据
+内存管理
+用 Memory 面板 识别内存泄漏（如未解绑的事件监听）
+LCP最大内容渲染时间，<=2.5S,图片/字体未优化，服务器响应慢
+FID 首次输入延迟，<=100ms,长任务(long tasks)阻塞主线程
+CLS 累计布局偏移，<=0.1，动态插入内容未预留空间
+
+Performance 面板深度解析
+核心性能问题定位：
+卡顿（低 FPS）
+检查 Main 线程 是否有长任务（>50ms 的黄色块）
+优化方案：代码分片、Web Workers 异步处理
+内存泄漏
+观察 JS Heap 曲线是否持续上升
+使用 Memory 面板 对比堆快照（Heap Snapshots）
+main线程火焰图，分析JavaScript执行耗时，找到for循环或递归导致的卡顿
+network请求时序，查看资源加载阻塞关系，优化关键请求（如css内联、预加载）
+timings标记，关键生命周期节点（如FCP/LCP），对比优化前后的渲染时间
+
+console.trace 打印调用栈，定位函数被谁调用了
+console.time 代码执行耗时统计，优化算法性能
+
+最小化复现四原则
+环境隔离：排除一切非代码因素的干扰
+数据裁剪：用最少数据触发Bug； 使用JSON.parse(JSON.stringify(data))深拷贝避免引用污染，用faker.js生成模拟数据替代敏感生产数据
+操作路径：用最简步骤复现问题
+依赖控制：确保第三方依赖可控； 常见问题：核心依赖版本升级导致报错，幽灵依赖升级导致报错
+
+内存分析实战
+内存泄漏四步检测法：
+- 拍摄初始堆快照
+- 执行可疑操作
+- 拍摄对比快照
+- 分析Delta内存增长
+
+三维归因分析法
+维度：技术 × 流程 × 沟通
+
+5Why 根因追溯
+问题：生产环境图片上传失败
+1. Why? → 阿里云OSS返回403  
+2. Why? → 临时凭证过期  
+3. Why? → 前端未刷新STS Token  
+4. Why? → 认为凭证有效期1小时足够  
+5. Why? → 需求文档未明确大文件上传场景
+
+|分类| 推荐工具| 使用场景|
+|--|--|--|
+|移动端调试 |vConsole + Charles |真机H5问题|
+|性能分析 | Lighthouse CI | 自动化性能监控|
+| 异常监控 | Sentry + Performance | 生产环境错误追踪|
+
+组件选型四维评估
+|维度|评估要点|工具/方法|
+|--|--|--|
+|代码质量|源码可读性/Ts支持|npm view xxx versions|
+|生态健康|维护频率/Issue响应速度|GitHub Insights -> Pulse|
+|设计系统|是否提供Figma/sketch资源|storybook设计插件|
+|性能代价|包体积/Gzip后大小|bundle-analyzer|
+
+案例:推荐使用dayjs替代moment.js进行日期转换、增减和格式化操作。
+Day.js:轻量级的Javascript日期库
+
+推荐组合：
+基础组件库：Naive UI（TS友好）
+复杂组件：Element Plus（企业级）
+动画组件：@vueuse/motion
+工具链：unplugin-vue-components（自动引入）
+
+```js
+// 性能敏感操作的防抖:
+import {debounce } from 'lodash-es'
+const search = debounce((query)=>{
+fetchResults(query)
+}，300)
+watch(searchQuery,search)
+// 性能标记:
+const measure=_DEV_?(name,fn)=> {
+performance.mark(`${name}-start`)
+const result = fn()
+performance.mark(`${name}-end`)
+performance.measure(name,`${name}-start`,`${name}-end`)
+return result
+}:(_，fn)=> fn()
+```
+
+Vue3 组件设计心法
+设计原则：
+原子性：Button > ButtonGroup > Toolbar
+受控/非受控：同时支持v-model和独立状态
+插槽分层设计：始终提供default插槽作为逃生舱口
+性能优化: 减少不必要的响应式依赖 + 合理拆分组件
+优秀组件三特征：
+克制：不做过度抽象（如避免万能`<SmartComponent />`）
+透明：暴露足够多的ref和事件钩子
+健壮：对非法参数有优雅降级方案
+工具链推荐：
+构建：Vite + unplugin
+测试：Vitest + Testing Library
+文档：Vitepress + Demo Container
+
+系统化调试四步法：观察现象→收集日志→精准复现→根因分析
+
+## 设计原则
+单一职责原则 :构建可持续维护组件的基石
+开闭原则: 对扩展开放，对修改关闭
+受控与非受控平衡:在粒度控制与性能效率间找到最佳平衡点
+接口稳定原则:在快速迭代与系统稳定间找到精妙平衡
+性能敏感原则:系统性保障组件的执行效率和资源利用率
+
+设计模式的核心价值在于​​构建高内聚、低耦合的可持续演进系统
+
+核心评审维度与标准：围绕​​质量、安全、可维护性、性能​​四大维度制定可量化技术指标与验收基线。
+
+需求拆解的核心逻辑：将大需求拆分为模块化、分层化的可交付单元
+
+| Git Flow | GitHub Flow | Trunk-Based Development |
+|--|--|--|
+|包括master（主分支，存放生产环境的代码）和develop（开发分支，用于集成所有功能分支的代码）‌功能分支（Feature Branches）发布分支（Release Branches）‌热修复分支（Hotfix Branches）|开发者在主分支上进行日常开发，当需要添加新功能时，会创建一个新的特性分支，完成后再通过Pull Request（PR）合并到主分支。通过拉取请求（Pull Requests）进行代码审查和合并。‌适用于小到中型团队，追求敏捷开发和持续集成/部署的环境。|TBD不再频繁地创建和合并分支，而是将所有的开发工作都集中在主干分支上。开发人员需更加谨慎地提交代码，确保每次提交都能通过自动化测试，以保证主干分支的稳定性和可用性。根据软件版本的发布节奏拉出发布分支，修改完成后通过cherry pick的方式合并到发布分支‌。适用快速迭代和持续集成的项目。|
+
+指标 | 定义与优化目标
+FCP | 首次内容绘制时间，目标<1.8秒。优化方法:减少阻塞资源、预加载关键资源。
+LCP | 最大内容元素加载时间，目标<2.5 秒。需优化图片、字体加载，使用CDN 加速。
+CLS | 累积布局偏移，目标<0.1。需为动态内容预留空间，指定图片/广告尺寸。
+TBT | 总阻塞时间，目标<300ms。需拆分长任务、延迟非关键脚本
+TTI | 可交互时间，依赖 JS 执行效率。优化方法:代码分割、异步加载脚本。
+
+FPS（每秒帧数）
+理想值：60 FPS 表示动画流畅，低于 30 FPS 用户会感知卡顿。
+红色条警告：FPS 图表中的红色区域表示帧率过低，需重点关注。
+2. CPU 使用率
+颜色对应：CPU 图表中不同颜色代表不同任务类型（如黄色为脚本执行，紫色为渲染。
+高占用区域：长时间满负载（全彩色）可能由复杂计算或频繁 DOM 操作引起。
+3. 火焰图（Main 面板）
+事件堆栈：展示主线程活动，横向宽度表示事件耗时，纵向表示调用层级。
+红色三角标记：表示耗时过长的事件（如强制重排、长任务）。
+跳转源码：点击事件后的 app.js:xx 链接可直接定位问题代码。
+4. 网络请求（Network 面板）
+资源加载时间：横条长度表示加载耗时，浅色部分为等待时间（TTFB）。
+
+1. 强制重排（Layout Thrashing）
+表现：紫色 Layout 事件频繁出现，伴随红色三角警告。
+解决方法：避免在循环中读取布局属性（如 offsetHeight），批量修改 DOM。
+2. JavaScript 执行阻塞
+表现：火焰图中长条橙色 Scripting 事件。
+解决方法：分解长任务、使用 requestAnimationFrame 替代 setTimeout。
+3. 内存泄漏
+表现：Memory 面板中 JS Heap 曲线持续增长。
+解决方法：移除无用事件监听器、清理全局变量引用。
+
+减少未使用的 JavaScript 和 CSS
+	使用代码分割和按需加载
+	删除无用的代码
+	使用 Tree Shaking 技术
+优化图片
+	使用现代图片格式（WebP、AVIF）
+	实现图片懒加载
+	使用响应式图片
+启用文本压缩
+	配置服务器支持 Gzip 或 Brotli 压缩
+消除渲染阻塞资源
+	将关键 CSS 内联到 HTML 中
+	为非关键资源添加 async 或 defer 属性
+优化关键渲染路径
+	减少 DOM 深度和复杂性
+	避免大型布局重排
+减少请求数量
+	合并小文件
+	使用 CSS Sprites 或图标字体
+优化服务器响应时间
+	使用 CDN 缓存静态资源
+	优化后端处理逻辑
+减少重定向请求
+	实施有效的缓存策略
+	设置适当的 Cache-Control 头
+	使用 ETag 和条件请求
+
+长任务（Long Tasks）：
+
+表现：火焰图中出现宽度较大的黄色块（超过 50ms）
+原因：JavaScript 执行时间过长，阻塞主线程
+解决方法：
+将大型计算任务拆分为小块
+使用 Web Workers 将耗时操作移至后台线程
+优化算法复杂度
+
+布局抖动（Layout Thrashing）：
+
+表现：火焰图中反复出现紫色的「Layout」事件
+原因：JavaScript 频繁读取和修改 DOM，导致浏览器被迫多次重新计算布局
+解决方法：
+批量读取和修改 DOM
+使用 requestAnimationFrame 调度视觉变化
+避免在循环中读取会导致重排的属性（如 offsetHeight、clientWidth 等）
+
+过度渲染（Excessive Rendering）：
+
+表现：大量紫色和绿色事件占据主线程
+原因：样式变化导致大范围重绘或重排
+解决方法：
+使用 CSS will-change 属性提示浏览器
+使用 CSS transform 代替改变位置的属性
+减少影响布局的 CSS 属性变化
+
+阻塞资源加载：
+
+表现：Network 面板中资源加载时间长，且阻塞了其他资源
+原因：关键资源（如 CSS、JavaScript）阻塞渲染
+解决方法：
+使用 async/defer 属性加载非关键 JavaScript
+内联关键 CSS
+预加载关键资源
+
+FPS（每秒帧数） ：绿色条表示流畅帧，红色条表示卡顿帧。确保动画和交互在 16ms 内完成，以保证页面的流畅性。
+CPU 使用率 ：不同颜色代表处理不同的活动，如黄色表示执行 JavaScript，紫色表示渲染，绿色表示绘制等。长时间满负载的 CPU 使用可能导致页面卡顿。
+内存使用 ：展示内存的使用情况，内存飙升可能意味着内存泄漏，内存不足又可能引发页面崩溃。
+概览面板 ：显示每一帧的渲染状态、CPU 使用率和内存使用情况等，提供整体的性能预览。
+线程面板 ：展示浏览器各个进程的具体活动，如主线程、合成线程、浏览器子线程等的活动情况。
+详情面板 ：包括 “Summary”、“Bottom-up”、“Call tree” 和 “Event log” 等选项卡，展示所选内容的详细信息，如各阶段的耗时比例、函数调用的完整堆栈关系等。
+
+## 前端安全的核心目标
+全面保护用户数据、防范恶意攻击、确保代码完整性、保护用户隐私、防范第三方风险、提升用户体验、确保系统可用性、满足合规性要求，并防止信息泄露。通过实施有效的安全措施（如输入验证、HTTPS、CSP、CSRF 防护等），开发者可以构建更安全、可靠的前端应用，保护用户和企业免受安全威胁。
+
+## 跨站脚本攻击（XSS）
+一种常见的网络安全漏洞，攻击者通过注入恶意脚本到网页中，当其他用户访问该页面时，脚本会在他们的浏览器中执行，从而窃取信息或进行其他恶意操作。
+
+|特性 | 反射型 xss | 存储型 xss | DOM 型XSS | 
+|--|--|--|--|
+|定义 | 恶意脚本被永久存储在服务器上(如数据库)，当用户访问相关页面时，脚本从服务器加载并执行。常见于用户输入内容被存储并显示的场景，如论坛帖子、评论等。|恶意脚本通过URL参数等方式传递给服务器，服务器将其嵌入响应页面并返回给用户，脚本在用户浏览器中执行。通常通过诱骗用户点击恶意链接实现|恶意脚本通过修改页面的DOM结构在客户端执行，不经过服务器。攻击利用前端Javascript代码对用户输入的处理不当。 | 
+|存储位置 | 不存储，脚本通过URL传递|存储在服务器(如数据库)|不存储，先全在客户端发生|
+|触发方式 | 用户点击恶意链接|用户访问包合恶意脚本的页面|用户访问包合恶意脚本的页面|
+|影响范围 | 仅对点击链接的用户生效 | 对所有访问页面的用户生效 | 仅对访问页面的用户生效|
+|是否依赖服务器 | 是 | 是 | 否 |
+|常见场景 | 搜索功能、错误消息显示 | 评论、论坛、用户资料 | 动态页面、前端路由 | 
+
+## CSRF
+CSRF 是一种攻击方式，攻击者诱骗用户在已登录目标网站的情况下，向目标网站发送伪造的请求。由于请求是用户浏览器发出的，目标网站会认为这是用户的自愿操作，从而导致攻击者能够以用户的身份执行某些操作（如转账、修改密码等）。
+
+## babel-loader
+用于将 ES6+（如 ES2015、ES2016 等）代码转换为向后兼容的 JavaScript。
+```js
+module.exports = {
+   module: {
+    rules: [
+      {
+        test: /\.(js)$/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            plugins: ["@babel/plugin-transform-runtime"],
+            cacheDirectory: true
+          }
+        },
+        exclude: /node_modules/
+      },
+    ]
+  }
+}
+```
+preset-env：一个智能预设，自动转换 JavaScript 语法和按需引入 polyfills，从而简化开发流程、优化代码体积，并提升兼容性。如果需要
+plugin-transform-runtime：一个babel插件，优化 Babel 转换过程中的辅助函数和 polyfill 的引入方式，避免全局污染、减少代码重复，并保持代码的模块化。
+
+## Css加载器
+loader执行顺序先执行右边，再执行左边。
+```js
+module.exports = {
+   module: {
+    rules: [
+      {
+        test: /\.s[ac]ss|css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', "sass-loader", "postcss-loader"]
+      },
+    ]
+  }
+}
+```
+postcss-loader：对 CSS 进行转换和优化，添加浏览器前缀、嵌套语法、未来 CSS 特性兼容、代码压缩、冗余删除等，配合postcss.config.js 配置文件进行使用。
+sass-loader：处理 ​Sass/SCSS 文件的加载器，将 ​Sass/SCSS 代码编译为标准 CSS 。
+css-loader：解析 CSS 文件中的 @import 和 url() 依赖关系，并将 CSS 转换为 JavaScript 模块。
+MiniCssExtractPlugin：​是一个插件，将 CSS 代码从 JavaScript 中提取出来，生成独立的 .css 文件，独立的 CSS 文件可以被浏览器缓存。
+
+## 图片
+loader执行顺序先执行右边，再执行左边。
+```
+module.exports = {
+   module: {
+    rules: [
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)(\?.*)?$/,
+        type: 'asset',
+        generator: {
+          filename: 'assets/img/[hash][ext][query]'
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024 // 限制于 10kb
+          }
+        }
+      },
+    ]
+  }
+}
+```
+asset资源类型使用 Webpack 5 内置的 ​Asset Modules​（资源模块）处理图片。
+dataUrlCondition可以根据指定的图片大小来判断是否需要转化为 base64，小图片内联减少请求次数。
+
+## 文字
+```js
+module.exports = {
+   module: {
+    rules: [
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/fonts/[hash:8].[name][ext]"
+        }
+      },
+    ]
+  }
+}
+```
+使用 Webpack 5 内置的 ​Asset Modules，将字体文件视为静态资源，将字体文件原样复制到输出目录​（dist/assets/fonts/） 。
+
+## webpack5的常用插件
+1、html-webpack-plugin：HTML生成与资源注入，SPA/MPA项目基础模板
+2、mini-css-extract-plugin：CSS代码分离，生产环境样式优化
+3、css-minimizer-webpack-plugin：CSS压缩，生产环境构建
+4、terser-webpack-plugin：JS压缩混淆，生产环境构建
+5、copy-webpack-plugin：静态资源复制，处理无需编译的静态文件
+
+插件列表：https://webpack.js.org/plugins/
