@@ -1,9 +1,4 @@
-<!--
- * @Date: 2026-02-25 15:21:13
- * @LastEditTime: 2026-02-25 15:21:20
- * @Description: 
--->
-<template>
+<!-- <template>
   <div ref="pdfContainer" class="pdf-container"></div>
 </template>
 
@@ -54,4 +49,4 @@ export default {
   height: 600px; /* or any specific height */
   overflow: auto; /* or scroll if you want scrollable content */
 }
-</style>
+</style> -->
