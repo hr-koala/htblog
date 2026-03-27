@@ -1,12 +1,13 @@
 ---
-title: '数据库'
+title: '数据库基础'
 ---
+
 ## 数据库
   数据库（Database，DB）是指长期储存在计算机中的有组织的、可共享的数据集合。
   数据库中的数据按照一定的数据模型组织、描述和储存，具有较小的冗余度、较高的数据独立性和易拓展性，并可为各种用户共享。
 
 ***数据库管理系统***
-数据库管理系统（DBMS ，即 Database Management System）是专门用于建立和管理数据库的一套软件，介于应用程序和操作系统之间。
+数据库管理系统（DBMS ，即 `Database Management System`）是专门用于建立和管理数据库的一套软件，介于应用程序和操作系统之间。
 功能：
 1.数据定义功能。  
 2.数据操纵功能。  
@@ -201,16 +202,16 @@ Redis 提供了丰富的数据结构。
 Redis 支持数据的备份，即 master-slave 模式的数据备份。
 
 开启Redis
-执行如下命令 ：redis-server  redis.windows.conf。
-其中，redis.windows.conf 是redis的配置文件。Redis的默认监听端口是6379。
+执行如下命令 ：`redis-server  redis.windows.conf`。
+其中，`redis.windows.conf` 是redis的配置文件。Redis的默认监听端口是6379。
 
 关闭Redis
-方法1：ctrl+c 
-方法2：在命令行中执行命令：redis-cli shutdown
+方法1：`ctrl+c` 
+方法2：在命令行中执行命令：`redis-cli shutdown`
 
 连接Redis
 redis-cli是Redis自带的基于命令行的Redis客户端，用于与服务端交互，我们可以使用该客户端来执行Redis各种命令。
-在命令行执行命令：redis-cli –h 127.0.0.1 –p 6379，参数分别为host、port。在客户端中输入ping，如返回PONG则说明Redis服务正常运行。
+在命令行执行命令：`redis-cli –h 127.0.0.1 –p 6379`，参数分别为host、port。在客户端中输入ping，如返回PONG则说明Redis服务正常运行。
 
 Redis使用简单介绍
 1.sting类型的有关命令
@@ -244,3 +245,57 @@ Redis使用简单介绍
 |  move key index  |  将key移动到指定数据库  |
 |  flushdb  |  清空当前数据库key  | 
 |  flushall  |  清空所有数据库key  |
+
+## 异构数据库兼容
+
+![异构数据库兼容] (/images/backend/database2.png)
+
+## 认证的概念
+认证：用户登录验证的过程，验证访问者提供的凭证（例如账号密码、手机号密码等），以确认访问者的身份。
+安全认证的场景：1、单体。2、网关做认证中心。3、网关+认证服务
+
+***认证方式 ***
+
+1. 账号密码登录认证：使用账号和密码的登录方式。
+2. 手机验证码登录认证：验证手机号和验证码的登录方式
+3. 手机密码登录认证：验证手机号和密码的登录方式
+4. 企业微信登录认证：对接企业微信的登录方式
+5. 单点登录认证：基于OAuth2的单点登录认证
+6. 自定义认证扩展：自定义扩展登录实现
+
+***授权***：授权发生在系统完成身份认证之后，是确认用户是否可以访问特定资源的过程，最终会授予用户访问某些资源（如位置、信息、文件、数据库等）的权限。
+授权方式 ：1.通过配置简单鉴权。2.第三方应用接口授权。3.自定义授权扩展开发。
+
+***运行时序图***
+![运行时序图](/images/backend/database3.png)
+
+单体架构 : 本地任务通过反射进程内调用自身系统的javaBean，执行具体任务逻辑
+分布式远程调用架构 ： 分布式任务通过远程调用发起http请求，分布式任务接口收到请求后执行具体任务逻辑
+
+## 前端环境准备
+
+1. 安装 nvm版本(https://nvm.uihtm.com/doc/download-nvm.html) 管理工具
+- node (https://nodejs.org/zh-cn/)
+- 安装Yarn (https://classic.yarnpkg.com/en/docs/install#windows-stable)
+- 配置NPM私库，`npm config set registry http://xxx.xxx.xxx.xxx:xxxx/repository/npm`
+- 安装VScode (https://code.visualstudio.com/)
+
+## 后端环境准备
+
+1. JDK (https://www.oracle.com/java/technologies/downloads/)
+2. Maven (https://maven.apache.org/download.cgi)
+3. IntelliJ IDEA (https://spring.io/guides/gs/intellij-idea) / IDEA (https://www.jetbrains.com/idea/download/?section=windows)
+4. 数据库 (https://dev.mysql.com/downloads/mysql/) 
+
+## 前端集成
+
+集成过程中如果有依赖无法拉下来，请尝试下面的方案
+
+```bash
+1、删除node_modules
+2、删除pnpm-lock.yaml
+3、pnpm clean:cache
+4、pnpm store prune
+5、pnpm install --registry=https://registry.npm.taobao.org/
+6、pnpm install
+```

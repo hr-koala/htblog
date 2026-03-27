@@ -1,8 +1,7 @@
-<!--
- * @Date: 2026-01-30 15:37:15
- * @LastEditTime: 2026-01-30 16:02:19
- * @Description: 
--->
+---
+title: 'transfer-virtual'
+---
+
 ## transfer-virtual
 **简介**：本内容主要是基于el-transfer的虚拟化列表优化，[element官方文档](https://element-plus.org/zh-CN/component/transfer.html)，其中在查看虚拟化树形控件（tree-v2）时发现自带的虚拟化列表[virtual-list](https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Felement-plus%2Felement-plus%2Fblob%2Fmain%2Fpackages%2Fcomponents%2Fvirtual-list%2Findex.ts "https://github.com/element-plus/element-plus/blob/main/packages/components/virtual-list/index.ts")中的FixedSizeList
 
