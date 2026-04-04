@@ -1,8 +1,6 @@
-<!--
- * @Date: 2025-07-30 11:07:41
- * @LastEditTime: 2025-10-14 09:57:56
- * @Description: 
--->
+---
+title: "前后端联动部署"
+---
 
 # 前后端联动部署：基于 Vue/React + SpringBoot 的全栈 CI/CD 流水线实践
 
