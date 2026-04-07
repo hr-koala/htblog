@@ -305,7 +305,7 @@ document.documentElement.setAttribute('data-dpr', dpr);
 ## 高清屏（Retina）图像优化（SVG/2x/3x图）
 矢量图形通过数学公式渲染，适配任意DPR设备
 文件体积平均比PNG小58%（基于图标复杂度）
-```htm
+```html
 <!-- 内联SVG（原子化组件库推荐方案） -->
 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"> 
      <path d="M12 2L3 21h18L12 2z" fill="currentColor"/> 

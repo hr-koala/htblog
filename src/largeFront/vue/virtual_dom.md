@@ -1,7 +1,7 @@
 ---
 title: 虚拟 DOM
 author: htong
-date: "2025-02-27"
+date: 2025-02-27
 ---
 
 什么是虚拟 DOM？如何实现一个虚拟 DOM?

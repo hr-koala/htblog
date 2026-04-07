@@ -1,7 +1,7 @@
 ---
 title: NextTick
 author: htong
-date: "2025-02-27"
+date: 2025-02-27
 ---
 
 ## 一、NextTick 是什么,Vue 中的$nextTick 有什么作用

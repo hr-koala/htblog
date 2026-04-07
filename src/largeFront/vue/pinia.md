@@ -1,7 +1,7 @@
 ---
 title: pinia的理解
 author: htong
-date: "2025-02-28"
+date: 2025-02-28
 ---
 
 # Pinia

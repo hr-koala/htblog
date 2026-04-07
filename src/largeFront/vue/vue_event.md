@@ -1,7 +1,7 @@
 ---
 title: vue 源码解析之 Event 原理
 author: htong
-date: "2025-02-27"
+date: 2025-02-27
 ---
 
 # vue 源码解析之 Event 原理

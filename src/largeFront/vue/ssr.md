@@ -1,7 +1,7 @@
 ---
 title: SSR
 author: htong
-date: "2025-02-27"
+date: 2025-02-27
 ---
 
 SSR 解决了什么问题？有做过 SSR 吗？你是怎么做的?
