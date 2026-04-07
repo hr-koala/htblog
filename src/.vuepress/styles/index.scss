@@ -1,21 +1,36 @@
-// place your custom styles here
-
+// 自定义样式
 // https://v2.vuepress.vuejs.org/zh/reference/default-theme/styles.html
+
 :root {
   scroll-behavior: smooth;
 }
+
+// 全局字体设置
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+// 强调文字
 strong {
   font-weight: bold;
 }
+
+// 代码块样式
 code,
 pre {
   overflow: auto;
   position: relative;
-  // line-height: 1.375;
-  // font-family: "Menlo, Monaco, Consolas, Courier New, monospace";
 }
 
-// dark
+// 行内代码样式
+:not(pre) > code {
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+// 深色主题适配
 html[data-theme="dark"] {
   strong em,
   strong {
@@ -26,7 +41,59 @@ html[data-theme="dark"] {
   }
   code {
     word-break: break-word;
-    // background-color: #fff5f5;
     color: #ff502c;
   }
+}
+
+// 表格样式优化
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color, #ddd);
+}
+
+// 图片居中
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+// 链接悬停效果
+a {
+  transition: color 0.2s ease;
+}
+
+// 引用块样式
+blockquote {
+  border-left: 4px solid var(--theme-color, #3eaf7c);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--text-color-3, #666);
+}
+
+// 滚动条样式
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }

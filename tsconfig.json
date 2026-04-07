@@ -1,11 +1,22 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
     "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/.vuepress/**/*.ts", "src/.vuepress/**/*.vue"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/.vuepress/.cache", "src/.vuepress/.temp"]
 }

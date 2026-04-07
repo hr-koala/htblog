@@ -1,9 +1,29 @@
-node_modules
-# VuePress 默认临时文件目录
-.temp
-# VuePress 默认缓存目录
-.cache
-# VuePress 默认构建生成的静态文件目录
-dist
-.gitignore
+# Dependencies
+node_modules/
 
+# VuePress 默认临时文件目录
+.temp/
+
+# VuePress 默认缓存目录
+.cache/
+
+# VuePress 默认构建生成的静态文件目录
+dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# OS files
+Thumbs.db
