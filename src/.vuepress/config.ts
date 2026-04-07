@@ -12,11 +12,6 @@ export default defineUserConfig({
       title: "博客和随笔",
       description: "Vue 驱动的静态网站生成器",
     },
-    // "/en/": {
-    //   lang: "en-US",
-    //   title: "Blog Project",
-    //   description: "A blog Docs",
-    // },
   },
   head,
   theme: hopeTheme({
@@ -38,7 +33,6 @@ export default defineUserConfig({
         sidebar: sidebarZh,
         // 页脚
         footer: "开发者",
-
         displayFooter: true,
         blog: {
           description: "一个前端开发者",
@@ -49,33 +43,12 @@ export default defineUserConfig({
           editLink: "在 GitHub 上编辑此页",
         },
       },
-      //   "/en/": {
-      //   // navbar
-      //   navbar: navbarEn,
-      //   // sidebar
-      //   sidebar: sidebarEn,
-      //   footer: "Default footer",
-      //   displayFooter: true,
-      //   blog: {
-      //     description: "A FrontEnd programmer",
-      //     intro: "/largeFront/",
-      //   },
-      //   metaLocales: {
-      //     editLink: "Edit this page on GitHub",
-      //   },
-      // },
     },
-    // 博客相关
     blog: {
       description: "一个前端开发者",
       intro: "/largeFront/",
       medias: {
         Baidu: "https://baidu.com/",
-        bilibili: "https://bilibili.com/",
-        VuePressThemeHope: {
-          icon: "bilibili",
-          link: "https://www.bilibili.com/",
-        },
       },
     },
     fullscreen: true,
@@ -111,11 +84,9 @@ export default defineUserConfig({
       },
     },
 
-    // 多语言配置
     metaLocales: {
       editLink: "在 GitHub 上编辑此页",
     },
-
     // 如果想要实时查看任何改变，启用它。注: 这对更新性能有很大负面影响
     // hotReload: true,
 
@@ -194,22 +165,18 @@ export default defineUserConfig({
     // 在这里配置主题提供的插件
     plugins: {
       blog: true,
-
       // 启用之前需安装 @waline/client
       // 警告: 这是一个仅供演示的测试服务，在生产环境中请自行部署并使用自己的服务！
       // comment: {
       //   provider: "Waline",
       //   serverURL: "https://waline-comment.vuejs.press",
       // },
-
       components: {
         components: ["Badge", "VPCard"],
       },
-
       icon: {
         prefix: "fa6-solid:",
       },
-
       // 如果你需要 PWA。安装 @vuepress/plugin-pwa 并取消下方注释
       // pwa: {
       //   favicon: "/favicon.ico",
@@ -268,7 +235,6 @@ export default defineUserConfig({
       // },
     },
   }),
-
   // 和 PWA 一起启用
   // shouldPrefetch: false,
 });

@@ -11,7 +11,7 @@ order: 1
 - [ SPA 首屏加载 ](first_page_time.md)
 - [ pinia 使用 ](pinia.html)
 - [ Vue 的 diff 算法 ](diff.md)
-- [ keeplive ](keeplive.md)
+- [ keepalive ](keepalive.md)
 - [ 长列表 ](long-list.html)
 - [ Vue 项目中 NextTick ](nextTick.md)
 - [ SPA 首屏加载 ](first_page_time.md)

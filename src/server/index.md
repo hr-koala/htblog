@@ -28,7 +28,7 @@ title: "前后端联动部署"
 全栈项目的工程结构直接影响流水线的整合复杂度与可维护性。建议根据团队规模与项目模块数，选择合理的目录划分与构建职责边界。
 
 2.1 单仓库结构建议（monorepo）
-```component
+```text
 project-root/
 ├── frontend/       # Vue 或 React 项目根目录
 │   ├── package.json
