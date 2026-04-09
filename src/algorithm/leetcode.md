@@ -27,27 +27,27 @@ tag:
 
 ```ts
 function productExceptSelf(nums: number[]): number[] {
-  const n = nums.length
+  const n = nums.length;
   const s1 = new Array(n + 2).fill(1),
-    s2 = new Array(n + 2).fill(1)
-  for (let i = 1; i <= n; i++) s1[i] = s1[i - 1] * nums[i - 1]
-  for (let i = n; i >= 1; i--) s2[i] = s2[i + 1] * nums[i - 1]
-  const ans = new Array(n)
-  for (let i = 1; i <= n; i++) ans[i - 1] = s1[i - 1] * s2[i + 1]
-  return ans
+    s2 = new Array(n + 2).fill(1);
+  for (let i = 1; i <= n; i++) s1[i] = s1[i - 1] * nums[i - 1];
+  for (let i = n; i >= 1; i--) s2[i] = s2[i + 1] * nums[i - 1];
+  const ans = new Array(n);
+  for (let i = 1; i <= n; i++) ans[i - 1] = s1[i - 1] * s2[i + 1];
+  return ans;
 }
 ```
 
 ### 计算数组中每个元素出现的次数
 
 ```ts
-const names = ["Alice", "Bob", "Tiff", "Bruce", "Alice", "Bob", "Bob"]
+const names = ["Alice", "Bob", "Tiff", "Bruce", "Alice", "Bob", "Bob"];
 const countedNames = names.reduce((allNames, name) => {
-  if (name in allNames) allNames[name]++
-  else allNames[name] = 1
-  return allNames
-}, {})
-console.log(countedNames)
+  if (name in allNames) allNames[name]++;
+  else allNames[name] = 1;
+  return allNames;
+}, {});
+console.log(countedNames);
 ```
 
 ### 按属性对 Object 分类
@@ -57,19 +57,19 @@ const person = [
   { name: "xiaoming", age: 18 },
   { name: "xiaohong", age: 17 },
   { name: "xiaogang", age: 17 },
-]
+];
 function groupBy(objectArray, property) {
   return objectArray.reduce(function (acc, obj) {
-    let key = obj[property]
+    let key = obj[property];
     if (!acc[key]) {
-      acc[key] = []
+      acc[key] = [];
     }
-    acc[key].push(obj)
-    return acc
-  }, {})
+    acc[key].push(obj);
+    return acc;
+  }, {});
 }
-let groupedPerson = groupBy(person, "age")
-console.log(groupedPerson)
+let groupedPerson = groupBy(person, "age");
+console.log(groupedPerson);
 ```
 
 ### 最大的矩形面积
@@ -80,32 +80,32 @@ console.log(groupedPerson)
 
 ```ts
 function getMaxArea(arr: number[]): number {
-  let maxArea = 0
+  let maxArea = 0;
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
-      maxArea = Math.max(maxArea, Math.min(arr[i], arr[j]) * (j - i))
+      maxArea = Math.max(maxArea, Math.min(arr[i], arr[j]) * (j - i));
     }
   }
-  return maxArea
+  return maxArea;
 }
 
 function getMaxArea2(arr: number[]): number {
-  let maxArea = 0 // 最大面积
-  let left = 0 // 左指针
-  let right = arr.length - 1 // 右指针
+  let maxArea = 0; // 最大面积
+  let left = 0; // 左指针
+  let right = arr.length - 1; // 右指针
   while (left < right) {
     maxArea = Math.max(
       maxArea,
-      Math.min(arr[left], arr[right]) * (right - left)
-    )
+      Math.min(arr[left], arr[right]) * (right - left),
+    );
     //最低的一段开始移动，直到超过之前的最低的
     if (arr[left] < arr[right]) {
-      left++
+      left++;
     } else {
-      right--
+      right--;
     }
   }
-  return maxArea
+  return maxArea;
 }
 ```
 
@@ -120,20 +120,20 @@ function getMaxArea2(arr: number[]): number {
 //特殊情况 F(1) = 1，F(2) = 2 可推断出 F(3) = F(1) + F(2) = 3
 
 function climbStairs(n: number): number {
-  if (n <= 2) return n
+  if (n <= 2) return n;
   let prePre = 1,
     pre = 2,
-    result = 0
+    result = 0;
   for (let i = 3; i <= n; i++) {
-    result = prePre + prePre
-    prePre = pre
-    pre = result
+    result = prePre + prePre;
+    prePre = pre;
+    pre = result;
   }
-  return result
+  return result;
 }
 
 function climbStairs2(n: number): number {
-  if (n <= 2) return n
-  return climbStairs2(n - 1) + climbStairs2(n - 2)
+  if (n <= 2) return n;
+  return climbStairs2(n - 1) + climbStairs2(n - 2);
 }
 ```

@@ -10,32 +10,32 @@ article: false
 可通过 cmd，执行 `ipconfig/all` 预览本地 ip 信息；
 
 ```js
-import os from "os"
+import os from "os";
 function getNetworkIp() {
-  let needHost = "" // 打开的host
+  let needHost = ""; // 打开的host
   try {
     // 获得网络接口列表
-    const network = os.networkInterfaces()
+    const network = os.networkInterfaces();
     // console.log("network",network)
     for (const dev in network) {
-      const iface = network[dev]
+      const iface = network[dev];
       for (let i = 0; i < iface.length; i++) {
-        const alias = iface[i]
+        const alias = iface[i];
         if (
           alias.family === "IPv4" &&
           alias.address !== "127.0.0.1" &&
           !alias.internal
         ) {
-          needHost = alias.address
+          needHost = alias.address;
           // console.log("alias.address",alias.address)
         }
         // console.log("alias",alias)
       }
     }
   } catch (e) {
-    needHost = "localhost"
+    needHost = "localhost";
   }
-  return needHost
+  return needHost;
 }
 ```
 
@@ -47,8 +47,8 @@ function getNetworkIp() {
 
 ```js
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8000") //设置 * 不能设置cookie
-})
+  res.header("Access-Control-Allow-Origin", "http://localhost:8000"); //设置 * 不能设置cookie
+});
 ```
 
 3. 基于 `http proxy` 实现跨域 => `webpack webpack-dev-server`
@@ -76,32 +76,32 @@ server: {
 5. `postMessage`
 
 ```js
-window.postMessage("message", "url")
+window.postMessage("message", "url");
 window.onmessage = (ev) => {
-  console.log(ev)
-  ev.source.postMessage(ev.data + "@@@", ev.origin)
-}
+  console.log(ev);
+  ev.source.postMessage(ev.data + "@@@", ev.origin);
+};
 ```
 
 6. `webSocket` 协议跨域:
 
 ```js
-socket.io
-let socket = io("url")
+socket.io;
+let socket = io("url");
 socket.on("connect", function () {
-  socket.on("message", function () {})
-  socket.on("disconnect", function () {})
-})
-socket.send("")
+  socket.on("message", function () {});
+  socket.on("disconnect", function () {});
+});
+socket.send("");
 //服务端
 socket.listen(server).on("connection", function (client) {
   client.on("message", function (msg) {
-    console.log(msg)
-  })
+    console.log(msg);
+  });
   client.on("disconnect", function () {
-    console.log("closed")
-  })
-})
+    console.log("closed");
+  });
+});
 ```
 
 7. `document.domain` + `iframe`
@@ -113,7 +113,7 @@ socket.listen(server).on("connection", function (client) {
 服务端接收到请求并把请求返回了，浏览器把响应拦截了  
 浏览器的保护机制：`同源策略`，(协议 域名 端口号) 限制不同源之间交互，避免攻击
 
-**_cors(Cross Origin Resource Sharing)_**策略：跨域资源共享 有一系列 http 头组成  
+***cors(Cross Origin Resource Sharing)***策略：跨域资源共享 有一系列 http 头组成  
 Spring Boot 服务端处理：
 
 1. 在目标方法上添加 @CorsOrigin 注释

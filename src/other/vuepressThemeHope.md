@@ -18,10 +18,10 @@ category:
 - 从 `@vuepress/helper/client` 导入 `useDarkMode` 来获取深色模式状态:
 
 ```ts
-import { useDarkMode } from "@vuepress/helper/client"
-const isDarkMode = useDarkMode()
+import { useDarkMode } from "@vuepress/helper/client";
+const isDarkMode = useDarkMode();
 
-console.log(isDarkMode.value) // get darkmode status
+console.log(isDarkMode.value); // get darkmode status
 ```
 
 如果 `@vuepress/helper` 没有安装，你应该先安装它:
@@ -37,7 +37,7 @@ $theme-colors: #2196f3, #f26d6d, #3eaf7c, #fb9b5f;
 要指定图标资源，请在主题选项中设置 `plugins.icon.assets`：
 
 ```ts
-import { hopeTheme } from "vuepress-theme-hope"
+import { hopeTheme } from "vuepress-theme-hope";
 export default {
   theme: hopeTheme({
     plugins: {
@@ -80,7 +80,7 @@ export default {
       },
     },
   }),
-}
+};
 ```
 
 可用的图标
@@ -123,9 +123,9 @@ RTL 布局,`vuepress-theme-hope` 完全支持 RTL 布局。只需在多语言配
 你应设置以下选项：
 
 ```ts
-import { dateSorter } from "@vuepress/helper"
-import { defineUserConfig } from "vuepress"
-import { hopeTheme } from "vuepress-theme-hope"
+import { dateSorter } from "@vuepress/helper";
+import { defineUserConfig } from "vuepress";
+import { hopeTheme } from "vuepress-theme-hope";
 
 export default defineUserConfig({
   theme: hopeTheme({
@@ -150,5 +150,5 @@ export default defineUserConfig({
       },
     },
   }),
-})
+});
 ```

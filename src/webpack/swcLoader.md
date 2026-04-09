@@ -1,11 +1,11 @@
 ---
 title: swc-loader
 ---
+
 ## JavaScript编译利器：swc-loader
 
 swc-loader 是一个用于在 Webpack 中使用 SWC（Speedy Web Compiler）来编译 JavaScript 文件的加载器。该项目主要使用 JavaScript 编程语言，通过高效的编译优化，为开发者提供更快速的构建体验。
 SWC Loader 是一个基于 SWC（Speedy Web Compiler）的 Webpack 加载器。SWC 是一个用 Rust 编写的高性能 JavaScript 和 TypeScript 编译器，旨在替代 Babel。SWC Loader 使得开发者可以在 Webpack 项目中使用 SWC 进行代码转换和压缩，从而提高构建速度。
-
 
 核心功能
 swc-loader 的核心功能是利用 SWC 的强大性能对 JavaScript 文件进行转译，它支持以下特性：
@@ -32,42 +32,42 @@ SWC Loader 是 SWC 生态系统的一部分，与以下项目紧密集成：
 
 ```js
 {
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/, // 匹配 .js 或 .mjs 文件
-                exclude: /(node_modules|bower_components)/, // 排除 node_modules 和 bower_components 目录
-                use: {
-                    loader: "swc-loader" // 使用 swc-loader
-                    // 可以通过 .swcrc 配置文件来配置 swc
-                }
-            }
-        ]
-    }
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/, // 匹配 .js 或 .mjs 文件
+        exclude: /(node_modules|bower_components)/, // 排除 node_modules 和 bower_components 目录
+        use: {
+          loader: "swc-loader", // 使用 swc-loader
+          // 可以通过 .swcrc 配置文件来配置 swc
+        },
+      },
+    ];
+  }
 }
 ```
 
 ```ts
 {
-    module: {
-        rules: [
-            {
-                test: /\.ts$/, // 匹配 TypeScript 文件
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: "swc-loader",
-                    options: {
-                        // 在使用 swc-loader 时遇到错误，可以通过设置 sync: true 来获取准确的错误信息。
-                        sync: true, // 启用同步模式运行 swc
-                        jsc: {
-                            parser: {
-                                syntax: "typescript" // 指定语法为 TypeScript
-                            }
-                        }
-                    }
-                }
-            }
-        ]
-    }
+  module: {
+    rules: [
+      {
+        test: /\.ts$/, // 匹配 TypeScript 文件
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "swc-loader",
+          options: {
+            // 在使用 swc-loader 时遇到错误，可以通过设置 sync: true 来获取准确的错误信息。
+            sync: true, // 启用同步模式运行 swc
+            jsc: {
+              parser: {
+                syntax: "typescript", // 指定语法为 TypeScript
+              },
+            },
+          },
+        },
+      },
+    ];
+  }
 }
 ```

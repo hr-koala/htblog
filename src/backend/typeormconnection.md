@@ -70,7 +70,7 @@ const connection = await createConnection({
 在创建的数组里面，有多个对象，每个对象连接不同的数据库
 
 ```js
-import { createConnections, Connection } from "typeorm"
+import { createConnections, Connection } from "typeorm";
 
 const connections = await createConnections([
   {
@@ -91,7 +91,7 @@ const connections = await createConnections([
     password: "test",
     database: "test2",
   },
-])
+]);
 ```
 
 ## 使用连接数据库
@@ -103,21 +103,21 @@ const connections = await createConnections([
 方法一、
 
 ```js
-import { getConnection } from "typeorm"
+import { getConnection } from "typeorm";
 
 // 可以在调用createConnection后使用并解析
 // 不同的连接必须具有不同的名称。默认情况下，如果未指定连接名称，则为 default
-const connection = getConnection()
+const connection = getConnection();
 
 // 如果你有多个连接，则可以按名称获取连接（名称就是name属性值）
-const secondConnection = getConnection("test2-connection")
+const secondConnection = getConnection("test2-connection");
 ```
 
 方法二、
 
 ```js
-import { getConnection } from "typeorm"
-import { User } from "../entity/User"
+import { getConnection } from "typeorm";
+import { User } from "../entity/User";
 
 // 处理用户相关的请求
 export class UserController {
@@ -126,7 +126,7 @@ export class UserController {
   // 用于获取所有用户的数据
   getAll() {
     // 这行代码的含义是查询数据库中 User 表中的所有数据
-    return getConnection().manager.find(User)
+    return getConnection().manager.find(User);
   }
 }
 ```

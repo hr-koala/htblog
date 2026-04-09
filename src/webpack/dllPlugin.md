@@ -19,9 +19,9 @@ title: DllPlugin和DllReferencePlugin
    > 比如我们通过 DllPlugin 打包出来了一个 vendor.dll.js 和一个 vendor.manifest.json，vendor.dll.js 包含所有的第三方库文件，而 manifest.json 就是库代码的一个索引，当 webpack 在执行 DllReferencePlugin 时，会读取 manifest.json 文件，看看是否有对应的第三方库
 
 1. 如何配置使用
-   
+
 4.1 DllPlugin 配置
-   我们新建一个 webpack.dll.config.js 作为配置文件
+我们新建一个 webpack.dll.config.js 作为配置文件
 
 ```ts
 const path = require("path");

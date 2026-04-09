@@ -1,4 +1,4 @@
-import { navbar } from "vuepress-theme-hope"
+import { navbar } from "vuepress-theme-hope";
 
 export const navbarEn = navbar([
   "/",
@@ -14,4 +14,4 @@ export const navbarEn = navbar([
       },
     ],
   },
-])
+]);

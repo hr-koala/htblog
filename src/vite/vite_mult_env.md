@@ -20,9 +20,9 @@ title: Vite多环境配置
 按照官方所说，vite 会从环境目录中加载我们编写的.env.[mode]相关文件，这里默认取的是项目根目录，在实际开发时，我们肯定希望将配置文件放置在单独的文件夹下，这样可以使项目结构更加清晰，那么如何指定 vite 加载环境配置的目录呢？我们可以通过在 vite.config.ts 中指定 envDir 来告诉 vite 多环境配置文件加载的路径：
 
 ```ts
-import { defineConfig } from "vite"
-import vue from "@vitejs/plugin-vue"
-import vueJsx from "@vitejs/plugin-vue-jsx"
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 // https://vitejs.dev/config/
 export default defineConfig({
   envDir: "./viteEnv", //这里使用相对路径，绝对路径其实也可以
@@ -31,7 +31,7 @@ export default defineConfig({
     strictPort: true,
   },
   plugins: [vue(), vueJsx()],
-})
+});
 ```
 
 ```ts
@@ -46,17 +46,17 @@ viteEnv/
 ```ts
 // # .env.local
 // # 所有模式下都会加载，但是会被git忽略
-VITE_APP_NAME = venus
+VITE_APP_NAME = venus;
 // # .env.develop 测试环境参数值
-VITE_OWNER = developer
-VITE_POSITION = shanghai
-VENUS_CONNECTION_TIMEOUT = 30000
+VITE_OWNER = developer;
+VITE_POSITION = shanghai;
+VENUS_CONNECTION_TIMEOUT = 30000;
 // # .env.develop.local 仅在develop模式下加载，但是会被git忽略,相同变量名时，此文件中的优先
-VENUS_CONNECTION_TIMEOUT = 10000
+VENUS_CONNECTION_TIMEOUT = 10000;
 // # env.production 生产环境参数值
-VITE_OWNER = production
-VITE_POSITION = china
-VENUS_CONNECTION_TIMEOUT = 3600
+VITE_OWNER = production;
+VITE_POSITION = china;
+VENUS_CONNECTION_TIMEOUT = 3600;
 ```
 
 然后修改 package.json，通过不同的指令，来启动不同环境：
@@ -113,7 +113,7 @@ export default defineConfig({
     strictPort: true,
   },
   plugins: [vue(), vueJsx()],
-})
+});
 ```
 
 ### 3. 同样的参数名，在.env.[mode], .env.local, .env.[mode].local 中具有怎样的优先级顺序？
@@ -132,12 +132,12 @@ export default defineConfig({
 vite 提供了一个 loadEnv 函数，用于加载到相关参数
 
 ```ts
-import { defineConfig, loadEnv } from "vite"
-import vue from "@vitejs/plugin-vue"
-import vueJsx from "@vitejs/plugin-vue-jsx"
+import { defineConfig, loadEnv } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 //在服务端获取配置参数
-const console = require("console")
-console.log(loadEnv("develop", "./viteEnv"))
+const console = require("console");
+console.log(loadEnv("develop", "./viteEnv"));
 // https://vitejs.dev/config/
 export default defineConfig({
   envDir: "./viteEnv",
@@ -147,13 +147,13 @@ export default defineConfig({
     strictPort: true,
   },
   plugins: [vue(), vueJsx()],
-})
+});
 ```
 
 这样就可以在服务端获取到相关参数了，需要注意的是，我们在下面自定义的 VENUS\_开头的参数并不会获取到，如果需要，我们要在 loadEnv 函数参数中显式的指定前缀：
 
 ```ts
-loadEnv("develop", "./viteEnv", ["VITE", "VENUS"])
+loadEnv("develop", "./viteEnv", ["VITE", "VENUS"]);
 ```
 
 ### 5. 变更为生产模式
@@ -162,7 +162,7 @@ loadEnv("develop", "./viteEnv", ["VITE", "VENUS"])
 只需要在.env.[mode]文件中加入一个参数：
 
 ```ts
-NODE_ENV = production
+NODE_ENV = production;
 ```
 
 然后我们就会发现，vite 默认参数中用来标识生产的 PROD 值就会变为 true。
@@ -185,8 +185,8 @@ NODE_ENV = production
 为什么会是这样一个参数呢？看名字，这个似乎和 node 有关系，我们在 vite.config.ts 中打印一下 node 的环境变量看一下：
 
 ```ts
-const process = require("process")
-console.log(process.env)
+const process = require("process");
+console.log(process.env);
 ```
 
 环境变量中确实多了一个这样的参数。为什么会这样呢？这个值不仅将我的环境变成了生产模式，这个参数还出现在了 nodejs 的环境变量中。我猜测有两种可能：

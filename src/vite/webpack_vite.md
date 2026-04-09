@@ -138,13 +138,11 @@ Vite 使用 `esbuild` 将 TypeScript 转译到 JavaScript，约是 tsc 速度的
 ## 对比 Webpack 和 Vite
 
 - Webpack
-
   - 支持的模块规范：`ES Modules`，`CommonJS` 和 `AMD Modules`；
   - Dev Server：通过 `webpack-dev-server `托管打包好的模块；
   - 生产环境构建：`webpack`
 
 - Vite
-
   - 支持的模块规范：`ES Modules`；
   - Dev Server：`原生 ES Modules`；
   - 生产环境构建：`Rollup`

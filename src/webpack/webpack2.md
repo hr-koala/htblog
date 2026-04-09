@@ -60,7 +60,7 @@ function cdn_scripts(use_cdn, publicPath) {
       process.cwd(),
       "node_modules",
       lib.name,
-      "package.json"
+      "package.json",
     );
     const { version } = require(package);
     lib.version = version;
@@ -123,7 +123,7 @@ function copy_scripts(outputDir, exclude_libs) {
         "node_modules",
         lib.name,
         lib.dist,
-        lib[mode]
+        lib[mode],
       );
       const to = path.resolve(
         process.cwd(),
@@ -131,7 +131,7 @@ function copy_scripts(outputDir, exclude_libs) {
         "venders",
         lib.name,
         lib.version,
-        lib[mode]
+        lib[mode],
       );
       return { from, to };
     });
@@ -154,7 +154,7 @@ function copy_venders(outputDir, exclude_libs = []) {
       process.cwd(),
       "node_modules",
       lib.name,
-      "package.json"
+      "package.json",
     );
     const { version } = require(package);
     lib.version = version;
@@ -188,7 +188,7 @@ function save_lazy_libs(lazyLibs) {
   ];
   lazyLibs.forEach((lib) => {
     contents.push(
-      `  { name: "${lib.name}", src: "${lib.script}", loaded: false },`
+      `  { name: "${lib.name}", src: "${lib.script}", loaded: false },`,
     );
   });
 
@@ -237,12 +237,12 @@ function cdn(use_cdn, publicPath, exclude_libs = []) {
 function config_alias(config, not_dev = true) {
   console.log(
     "build app config_alias:",
-    path.resolve(process.cwd(), "src/assets/scss/")
+    path.resolve(process.cwd(), "src/assets/scss/"),
   );
   if (not_dev) {
     config.resolve.alias.set(
       "scss",
-      path.resolve(process.cwd(), "src/assets/scss/")
+      path.resolve(process.cwd(), "src/assets/scss/"),
     );
   } else {
     config.resolve.alias
@@ -267,7 +267,7 @@ function config_html(
   use_cdn,
   publicPath = "",
   plugin = "html-index",
-  exclude_libs = []
+  exclude_libs = [],
 ) {
   config.plugin(plugin).tap((args) => {
     args[0].cdn = cdn(use_cdn, publicPath, exclude_libs);
@@ -284,7 +284,7 @@ function config_copy(
   outputDir,
   is_app = false,
   exclude_libs = [],
-  exclude_apps = []
+  exclude_apps = [],
 ) {
   // cdn
   if (is_production && !use_cdn) {
@@ -324,14 +324,13 @@ function config_define(config, configArgv) {
     });
     // 加入软件信息
     args[0]["process.env"]["VUE_APP_UI_VERSION"] = JSON.stringify(
-      package.dependencies[UI_PACKAGE_NAME]
+      package.dependencies[UI_PACKAGE_NAME],
     );
     args[0]["process.env"]["VUE_APP_TEMPLATE_VERSION"] = JSON.stringify(
-      package.dependencies[TEMPLATE_PACKAGE_NAME]
+      package.dependencies[TEMPLATE_PACKAGE_NAME],
     );
-    args[0]["process.env"]["VUE_APP_BUILD_TIME"] = JSON.stringify(
-      getNowDateStr()
-    );
+    args[0]["process.env"]["VUE_APP_BUILD_TIME"] =
+      JSON.stringify(getNowDateStr());
     return args;
   });
 }
@@ -530,7 +529,7 @@ const config = {
           test: /\.js$|\.css$|\.html$|\.otf$|\.ttf/,
           threshold: 10240,
           minRatio: 0.8,
-        })
+        }),
       );
 
       // 性能配置
@@ -647,7 +646,7 @@ function getLibIcons() {
   const arr = [];
   const libPath = path.join(
     process.cwd(),
-    "node_modules/element-ui/packages/theme-chalk/src/fonts/iconfont.scss"
+    "node_modules/element-ui/packages/theme-chalk/src/fonts/iconfont.scss",
   );
   check_libicon(libPath, arr);
   return new Set(arr);
@@ -660,7 +659,7 @@ function getLibIcons() {
 function getKuiVersion() {
   const libPath = path.join(
     process.cwd(),
-    "node_modules/element-ui/package.json"
+    "node_modules/element-ui/package.json",
   );
   return require(libPath).version;
 }
@@ -702,7 +701,7 @@ function main() {
     console.warn(
       "项目中有以下图标未在" +
         uiVersion +
-        "组件库版本里面检查到, 请参考指导文档进行修正"
+        "组件库版本里面检查到, 请参考指导文档进行修正",
     );
     console.log(result);
   } else {
@@ -779,7 +778,7 @@ checker.init(
         encoding: "utf8",
       });
     }
-  }
+  },
 );
 ```
 
@@ -810,15 +809,19 @@ const externalFilesDir_tmp = path.join(__dirname, "externaltmp");
  * @param {*} toDir  暂时保存移动文件的目录
  * @param {*} selected_modules 不需移动的文件目录
  */
-function moveModules (fromDir, toDir, selected_modules, move_all = false) {
+function moveModules(fromDir, toDir, selected_modules, move_all = false) {
   const files = fs.readdirSync(fromDir);
   let fileNameToMove = [];
   if (!move_all) {
-    files.forEach(fileName => {
+    files.forEach((fileName) => {
       let modules = path.join(fromDir, fileName);
       let stat = fs.lstatSync(modules);
       if (stat.isDirectory() === true) {
-        if (selected_modules.every(sm => moduleList[sm].root.lastIndexOf(fileName) === -1)) {
+        if (
+          selected_modules.every(
+            (sm) => moduleList[sm].root.lastIndexOf(fileName) === -1,
+          )
+        ) {
           // 筛选不存在用户选择的模块 的目录
           fileNameToMove.push(fileName);
         }
@@ -830,7 +833,7 @@ function moveModules (fromDir, toDir, selected_modules, move_all = false) {
 
   // 将用户没有选择的模块移动保存
   if (fileNameToMove.length) {
-    fileNameToMove.forEach(fileName => {
+    fileNameToMove.forEach((fileName) => {
       let originModules = path.join(fromDir, fileName);
       let newModules = path.join(toDir, fileName);
       fs.renameSync(originModules, newModules, function (err) {
@@ -842,18 +845,21 @@ function moveModules (fromDir, toDir, selected_modules, move_all = false) {
   }
 }
 
-async function exec () {
+async function exec() {
   const prompList = Object.keys(moduleList)
-    .filter(key => key.toUpperCase() !== "FRAMEWORK")
-    .map(key => ({ name: key.toUpperCase() + ":" + moduleList[key].desc, value: key }));
+    .filter((key) => key.toUpperCase() !== "FRAMEWORK")
+    .map((key) => ({
+      name: key.toUpperCase() + ":" + moduleList[key].desc,
+      value: key,
+    }));
 
   const ret = await inquirer.prompt([
     {
       type: "checkbox",
       name: "selected_modules",
       message: "Which modules do you want to build??",
-      choices: prompList
-    }
+      choices: prompList,
+    },
   ]);
 
   try {
@@ -884,7 +890,10 @@ async function exec () {
 
   // 移动文件
   console.log("Build modules……");
-  let build = spawnSync(/^win/.test(process.platform) ? "vue-cli-service.cmd" : "vue-cli-service", ["build"]);
+  let build = spawnSync(
+    /^win/.test(process.platform) ? "vue-cli-service.cmd" : "vue-cli-service",
+    ["build"],
+  );
 
   console.log(String(build.stdout));
 
@@ -898,11 +907,10 @@ async function exec () {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 exec();
 ```
-
 
 ```ts
 /* eslint-disable */
@@ -924,7 +932,7 @@ function walk_dir(root_dir, views, current_dir) {
   const results = [];
   const files = fs.readdirSync(path.join(root_dir, current_dir));
   files.forEach((file) => {
-    file = current_dir + '/' + file;
+    file = current_dir + "/" + file;
     const stat = fs.statSync(path.join(root_dir, file));
     if (stat && stat.isDirectory()) {
       /* Recurse into a subdirectory */
@@ -947,7 +955,7 @@ function walk_dir(root_dir, views, current_dir) {
  * @param {string} views - 视图目录名称
  * @param {string[]} excludes - 需要排除的路由路径数组
  * @param {boolean} excludeAll - 是否排除所有路由,默认为false
- * 
+ *
  * 该函数会扫描项目目录下的视图文件,生成对应的路由配置:
  * 1. 遍历 src/projects 目录下的所有视图文件
  * 2. 根据文件路径生成路由路径和组件名称
@@ -958,26 +966,31 @@ function generate_projects_routes(views, excludes = [], excludeAll = false) {
   const projects = path.resolve(process.cwd(), "src/projects");
   const projects_exist = fs.existsSync(projects);
   const files = projects_exist ? walk_dir(projects, views, ".") : [];
-  const projects_routes_file = path.resolve(process.cwd(), "src/router/projects.ts");
+  const projects_routes_file = path.resolve(
+    process.cwd(),
+    "src/router/projects.ts",
+  );
 
   // make sure directory exist
   const dir = path.dirname(projects_routes_file);
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
+    fs.mkdirSync(dir, { recursive: true });
   }
 
-  const projects_routes = [
-    'export const projects_routes = [',
-  ]
-  views = views.replace(/\//g, "")
+  const projects_routes = ["export const projects_routes = ["];
+  views = views.replace(/\//g, "");
 
-  if(!excludeAll){
-    files.forEach(file => {
+  if (!excludeAll) {
+    files.forEach((file) => {
       const route_path = file.slice(1, -4);
       // 按目录打包
-      const module_name = file.split("/").slice(1, -1).filter(dir => dir !== views).join("_");
-      const componentName = getComponentName(file)
-      if (!excludes.some(exclude => file.includes(exclude))) {
+      const module_name = file
+        .split("/")
+        .slice(1, -1)
+        .filter((dir) => dir !== views)
+        .join("_");
+      const componentName = getComponentName(file);
+      if (!excludes.some((exclude) => file.includes(exclude))) {
         const comment = `/* webpackChunkName: "${module_name}" */`;
         projects_routes.push(
           `  { path: "${route_path}", component: () => import(${comment} "@/projects${file.slice(1)}"), name: "${componentName}" },`,
@@ -986,9 +999,8 @@ function generate_projects_routes(views, excludes = [], excludeAll = false) {
     });
   }
 
-
-  projects_routes.push('];');
-  projects_routes.push('');
+  projects_routes.push("];");
+  projects_routes.push("");
   fs.writeFileSync(projects_routes_file, projects_routes.join("\n"));
 }
 
@@ -999,86 +1011,96 @@ function generate_projects_routes(views, excludes = [], excludeAll = false) {
  */
 /**
  * 生成应用路由配置
- * 
+ *
  * @param {string} app_name - 应用名称
  * @param {string} views - 视图目录名称
- * 
+ *
  * @description
  * 该函数用于生成应用的路由配置文件:
  * 1. 清空并重写 projects_routes 文件
  * 2. 根据应用目录结构自动生成对应的路由配置
  * 3. 支持按目录进行代码分割打包
  * 4. 自动处理路由路径和组件导入
- * 
+ *
  * @example
  * generate_app_routes('admin', 'views')
  */
 function generate_app_routes(app_name, views) {
   // clear projects routes
   const projects_routes = [
-    '/* eslint-disable */',
-    'export const projects_routes = [',
+    "/* eslint-disable */",
+    "export const projects_routes = [",
   ];
-  projects_routes.push('];');
-  projects_routes.push('');
-  const projects_routes_file = path.resolve(process.cwd(), "src/router/projects.ts");
+  projects_routes.push("];");
+  projects_routes.push("");
+  const projects_routes_file = path.resolve(
+    process.cwd(),
+    "src/router/projects.ts",
+  );
   fs.writeFileSync(projects_routes_file, projects_routes.join("\n"));
 
   // generate app routes
   const app = path.resolve(process.cwd(), "src/projects", app_name);
   const app_exist = fs.existsSync(app);
   const files = app_exist ? walk_dir(app, views, ".") : [];
-  const app_routes_file = path.resolve(process.cwd(), "src/router/" + app_name + ".ts");
+  const app_routes_file = path.resolve(
+    process.cwd(),
+    "src/router/" + app_name + ".ts",
+  );
 
   // make sure directory exist
   const dir = path.dirname(app_routes_file);
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
+    fs.mkdirSync(dir, { recursive: true });
   }
 
-  const app_routes = [
-    '/* eslint-disable */',
-    'export const app_routes = [',
-  ]
+  const app_routes = ["/* eslint-disable */", "export const app_routes = ["];
 
-  views = views.replace(/\//g, "")
-  files.forEach(file => {
+  views = views.replace(/\//g, "");
+  files.forEach((file) => {
     // './views/param/Dict.vue' => `/${app_name}/views/param/Dict`
     const route_path = "/" + app_name + file.slice(1, -4);
     // 按目录打包
-    const module_name = app_name.replace("/", "-") + "_" + file.split("/").slice(1, -1).filter(dir => dir !== views).join("_");
+    const module_name =
+      app_name.replace("/", "-") +
+      "_" +
+      file
+        .split("/")
+        .slice(1, -1)
+        .filter((dir) => dir !== views)
+        .join("_");
     const comment = `/* webpackChunkName: "${module_name}" */`;
     app_routes.push(
       `  { path: "${route_path}", component: () => import(${comment} "@/projects/${app_name}${file.slice(1)}") },`,
     );
   });
 
-  app_routes.push('];');
-  app_routes.push('');
+  app_routes.push("];");
+  app_routes.push("");
   fs.writeFileSync(app_routes_file, app_routes.join("\n"));
 }
 /**
  * 从文件路径中提取组件名称
  * @param {string} path - 文件的完整路径
  * @returns {string} 提取出的组件名称
- * 
+ *
  * 如果路径以 index.vue 结尾,则返回父目录名称作为组件名
  * 否则返回文件名(不含.vue扩展名)作为组件名
  */
 function getComponentName(path) {
   const pathList = path.split("/");
-  if(pathList[pathList.length -1] === "index.vue") {
-    return pathList[pathList.length -2]
+  if (pathList[pathList.length - 1] === "index.vue") {
+    return pathList[pathList.length - 2];
   }
-  return  pathList[pathList.length -1].slice(0, -4)
+  return pathList[pathList.length - 1].slice(0, -4);
 }
 
 // test: node build/projects_routes.js
 // generate_projects_routes("/views/");
 
 // 生成应用路由:
-//    1. node build/projects_routes.js --app 
-// or 2. yarn approutes 
+//    1. node build/projects_routes.js --app
+// or 2. yarn approutes
 let app_name = "";
 let views = "";
 if (process.argv.length >= 4 && process.argv[2] === "--app") {
@@ -1096,7 +1118,8 @@ if (process.argv.length >= 4 && process.argv[2] === "--app") {
   let excludes = [];
   if (process.argv.length === 4) {
     views = process.argv[3];
-  } if (process.argv.length === 5) {
+  }
+  if (process.argv.length === 5) {
     views = process.argv[3];
     excludes = process.argv[4].split(",");
   }
