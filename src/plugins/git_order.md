@@ -1,8 +1,11 @@
 ---
-title: git 命令
+title: git配置命令
 date: 2025-02-26
 article: false
 ---
+
+git官网地址： `https://git-scm.com/`
+
 
 ## git 命令
 
