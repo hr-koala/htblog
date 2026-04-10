@@ -9,6 +9,27 @@ git官网地址： `https://git-scm.com/`
 
 ## git 命令
 
+> git --version
+> git config --global user.name ""
+> git config --global user.email ""
+
+进入C盘查看 `.gitconfig` 文件
+
+> git config user.name
+> git config user.email
+
+> git config --list
+
+生成SSH KEY
+> ssh-keygen -t rsa -C "注册邮箱"
+
+获取ssh key公钥内容（id_rsa.pub）
+> cd ~/.ssh
+> cat id_rsa.pub
+
+验证是否配置成功
+> ssh -T git@github.com
+
 > git init
 > git clone xxx
 > git status
@@ -141,6 +162,4 @@ git merge 原始分支
 > git reset --hard origin/<目标分支>  # 重置本地分支与远程一致
 > git merge --abort  # 取消当前分支的合并操作
 
-### ESLint 的初始化
 
-`npm init @eslint/config`
