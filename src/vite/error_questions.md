@@ -1,8 +1,10 @@
 ---
-title: "viteErrorQuestions"
+title: "Vite 常见问题"
 ---
 
-### 1.vite-plugin-mock 的 require is not defined 问题
+# Vite 常见问题
+
+## 1. vite-plugin-mock 的 require is not defined 问题
 
 ![vite-plugin-mock](/images/vite/vite-plugin-mock.png)
 
@@ -11,7 +13,7 @@ title: "viteErrorQuestions"
 > 卸载 3.0.0 ：npm uninstall vite-plugin-mock -D  
 > 安装 2.9.6：npm install vite-plugin-mock@2.9.6 -D
 
-### 2.import.meta.globEager 代替 require.context 自动导入文件
+## 2. import.meta.globEager 代替 require.context 自动导入文件
 
 在使用 vite 时，发现不能使用 require.context 自动导入 modules,可以使用 import.meta.globEager 替换
 
@@ -36,7 +38,7 @@ for (const key in files) {
 export default modules;
 ```
 
-#### store/modules 文件夹 处理
+## 3. store/modules 文件夹处理
 
 ```js
 const modulesFiles = require.context("./modules", true, /\.ts$/)
