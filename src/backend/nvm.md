@@ -74,13 +74,15 @@ npm_mirror: `https://npm.taobao.org/mirrors/npm/`
 ### 设置淘宝镜像
 
 > `npm config set registry https://registry.npm.taobao.org`
+> `npm config set registry http://registry.npmmirror.com`
+> `npm config set registry https://registry.npmjs.org`
 
 ### 配置全局目录
 
-> npm config get prefix <br/>
-> npm config get cache <br/>
-> npm config set prefix "D:\*\*\nodeJs\node_global" <br/>
-> npm config set cache "D:\*\*\nodeJs\node_cache" <br/>
+> npm config get prefix 
+> npm config get cache 
+> npm config set prefix "D:\*\*\nodeJs\node_global" 
+> npm config set cache "D:\*\*\nodeJs\node_cache" 
 
 ### 全局安装 cnpm
 
