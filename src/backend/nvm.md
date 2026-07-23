@@ -89,3 +89,4 @@ npm_mirror: `https://npm.taobao.org/mirrors/npm/`
 > `npm install -g cnpm --registry=https://registry.npm.taobao.org`
 
 
+> npm config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass  // 命令作用: 专门解决 node-sass 二进制包下载慢、下载失败、超时报错，指定从淘宝镜像拉取编译包

@@ -487,3 +487,104 @@ RPC（远程过程调用）：允许一个模块像调用本地函数一样调�
 
 概念结构设计示例：投资者购买股票
 ![投资者购买股票](/images/szkingdom/szbackend-SJK1.png)
+
+### 数据库优化
+
+字段对象对于SQL语句的执行效率也有很大的影响。影响因素主要体现在两个方面——字段存储顺序和字段类型
+索引是一种特殊的数据库结构，用于加快数据检索速度。它允许数据库系统快速定位数据，而无需遍历整个数据集。
+
+**数据段**（即基表段），是Oracle数据库中用于存储基表数据的段。数据段存储在表空间中，对应于一个或多个数据文件。每个基表段都有一个数据段（cluster聚簇段中，两个基表对应一个数据段）。每当用户创建一个基表时，系统会在用户默认的表空间中创建一个数据段。
+**区**是磁盘空间分配的最小单位，磁盘按区划分的，每次至少分配一个区。区存储于段中，是数据库存储空间逻辑单位，是由连续的数据块组成的。
+**块**是Oracle数据库中最小的一个数据组织单位。它的大小是由参数db_block_size确定。它的取值和os有关，一般是os物理块的整数倍，即512K的倍数。
+
+排序操作是数据库中比较消耗资源的一类操作，也是优化的重点。
+引发排序的操作：创建索引；
+带有DISTINCT、ORDER BY、GROUP BY、UNION、MINUS、INTERSET、CONNECT BY和CONNECT BY ROLLUP子句的查询；
+排序合并连接；
+收集统计信息
+
+**堆表：**
+最常见的影响性能的因素就是表的规模。如果对表进行全表扫描的话，会扫描高水位线(后面统计信息会讲到)以下的所有块。这也解释了为什么DELETE数据后，扫描表仍然很慢。
+分区表：分区表中的每个分区也是一个独立的堆表
+
+**索引组织表**，顾名思义，就是存储在一个索引结构中的表，也就是以B+树结构存储。换句话说，在索引组织表中，索引就是数据，数据就是索引，两者合二为一。通过索引直接访问数据，可以降低I/O，减少逻辑读，减少访问缓冲区缓存。
+
+**字段存储顺序：**
+数据库不知道一条记录中每个字段的偏移量。若要定位字段2，必须从字段1开始，接着根据字段1的长度来定位字段2。
+因此靠近记录开始地方的字段定位速度明显快于记录末尾的字段。因此，在做表设计时，将访问频繁的字段放在前面。
+
+**字段类型：**
+字段类型对访问性能对比字段存储顺序就有着更显著的影响。常见的问题是：①隐式数据类型转化；②错误数据类型带来的成本估算异常。
+举例：`select * from t1 where id=20`，（id是varchar2类型且是索引）
+优化器会对20做TO_NUMBER操作。由于进行了数据类型转换，可导致最终走全表扫描。
+数据类型异常导致的优化器估算异常，比如说日期存成了字符串或数字，对日期字段(文本类型)进行范围查询时，优化器评估返回的记录数可能存在一定偏差。原因就是优化器针对文本的范围选择率的评估不如日期类型精准。
+
+**B树索引特性**
+索引的高度较低，高度越低查找速度越快
+索引存储列值，在查询索引列时，实际上只要查询索引就行了，不需要查询表
+索引本身是有序的，我们在排序时，直接按照索引来，可以消除排序。
+
+缺点：
+占空间，索引本身存储列值，所以索引本身就是一个简化的实体表，索引越多，占据的存储空间越大。
+影响插入 删除效率，因为索引是有序的，在插入和删除时，我们都需要维护索引，维护索引的开销是插入数据的N倍。因此对于大表，可以做分区，将一个很大的全局索引，拆分为多个较小的本地索引，减少索引维护的开销
+
+**复合索引：**
+当某个索引包含有多个已索引的列时，这个索引就称为复合索引。
+字段顺序核心原则：高选择性字段优先，排序字段与索引顺序一致。
+
+单块读：
+高频率、低吞吐：适合随机访问，但频繁单块读可能导致I/O次数多、CPU消耗高
+优化：减少逻辑读、优化索引结构
+
+多快读：
+低频率、高吞吐：适合顺序访问，减少I/O次数，但可能因缓存块分割导致额外单块读
+优化：整多块读参数、增大缓存、避免碎片化
+
+![嵌套循环连接、排序合并连接和哈希连接](/images/szkingdom/szbackend-SJK2.png)
+
+| 对比维度 | 嵌套循环连接(Nested Loops)                           | 排序合并连接(Sort Merge) | 哈希连接(Hash Join) | 
+|---------|---------------------------------------------------|--------------------------| ---------------|
+| 适用条件 | 1.支持所有连接类型,等值或非等值连接。2.驱动表数据量小，被驱动表连接字段有高效索引。 | 1.主要用于不等价连接，如>,>=,<,<=;但不包括<>. 2.数据量较大且无高效索引，或需要避免I/O瓶颈。 | 1.仅支持等值连接。2.小表(Build Input)e完全缓存至内存，大表(Probe Input)顺序扫描 | 
+| 资源消耗 | 1.依赖CPU处理逻辑读。2.依赖被驱动表索引的维护。 | 1.内存用于排序操作。2.临时表空间存储排序结果。 | 1.内存构建哈希表(PGA)2.磁盘I/O用于哈希表分区溢出。 | 
+| 特点 | 1.有高选择性索引或限制性搜索时效率高。2.可先快速返回首批数据。其他连接不行。3.适合高并发短查询(OLTP) | 1.无索引依赖。2.适合大数据量非等值连接。3.合并阶段需遍历两结果集。 | 1.无索引依赖。2.内存充足时吞吐量高。3.支持并行处理。 | 
+| 缺点 | 1.驱动表过大时效率骤降。2.被驱动表无索引时逻辑读激增。 | 1.排序操作成本高(CPU+内存)2.OLTP场景不适用。 | 1.仅支持等值连接。2.内存不足时性能下降(磁盘I/O)。 | 
+
+***常见的SQL改写***
+使用UNION改写OR,**Or 会导致sql不走索引**
+`select * from cfg_fund t where t.bulletindate='20260501' or t.navdate='20260501'`
+`select * from cfg_fund t where t.bulletindate='20260501' UNION select * from cfg_fund t where t.navdate='20260501'`
+
+使用join改写exists
+`select * from cfg_fundnav t where exists(select l from (select tano, fundcode from cfg_fund tl where tl.fundtype ='1' union select tano, fundcode from cfg_fund tl where tl.fundtype ='1) where t.fundcode = tl.fundcode and t.tano =tl.tano) and t.bulletindate ='20220501';`
+`select * from cfg_fundnav t jion (select tano, fundcode from cfg_fund tl where tl.fundtype ='1' union select tano, fundcode from cfg_fund tl where tl.fundtype ='1) tl on t.fundcode = tl.fundcode and t.tano =tl.tano where t.bulletindate ='20220501';`
+Exist 会产生filter，且驱动表固定。
+Filter的效果与nested loops 一致。如果驱动表数据量太大，会使得被驱动表被访问太多次。
+注意：exists不需要去重，但是join需要去重
+
+使用 Merge into  改写 update
+`update cfg_fundnav t set t.nav = (select nav from cfg_fundnav tl where t.tano =tl.tano and t.fundcode = tl.fundcode and t.navdate = tl.navdate) where exists (select l from cfg_fundnav tl where t.tano =tl.tano and t.fundcode = tl.fundcode and t.navdate=tl.navdate)`
+`merge into fg_fundnav t using cfg_fundnav tl on(t.tano = tl.tano and t.fundcode = tl.fundcode and t.navdate =tl.navdate) when matched then update set t.nav= tl.nav;`
+Update会多次遍历t1表
+Update where exists 容易产生filter 
+Merge into 相当于join
+
+使用 case when 改写 union all
+`select fundcode,sum(confirmedvol)as confirmedvol from (select fundcode,t.confirmedvol as confirmedvol from ack_trans t where t.businesscode ='22' union all select fundcode,-t.confirmedvol as confirmedvol from ack_trans t where t.businesscode ='98') group by fundcode`
+`select fundcode,sum(case when t.businesscode ='22' then confirmedvol else -confirmedvol end)as confirmedvol from ack_trans t where t.businesscode in('22','98') group by fundcode`
+Union all 多次扫描 t 表
+
+排序操作是数据库中比较消耗资源的一类操作，也是优化的重点。
+什么时候会排序?
+创建索引:索引是个有序的结构，创建索引肯定需要将索引值排序后才能建立索引。
+带有以下的子句查询:
+DISTINCT、UNION、MINUS、INTERSET --(服务器进程要清除重复值)
+ORDER BY、GROUP BY、CONNECT BY和CONNECT BY ROLLUP --(服务器进程要对子句中指定的值或条件进行排序。)
+排序合并连接:如果查询两个或多个表的等值连接请求时没有发现索引，则服务器进程会进行排序合并连接。如果优化器选择排序合并，则服务器进程要对每个表进行全表扫描，按连接列的值分别排序每个表，然后根据条件中的值合并表
+收集统计信息。
+
+**避免和减少排序**
+常见优化
+NOSORT索引：如果要检索的列值是升序（预先排序或递增插入），则可以在索引建立时使用NOSORT子句，消除索引建立的排序阶段。
+UNION ALL而不是UNION：UNION ALL子句并不消除重复项，因此查询阶段不需要排序
+表连接使用索引访问：排序合并连接，需要全表扫描和一个排序合并结果集。基于索引访问的嵌套循环连接，可以减少全表扫描和消除排序，从而提高性能。
+对ORDER BY子句引用的列生成索引：对经常在ORDER BY子句中引用的列生成索引，这样Oracle用索引提供顺序，而不是进行排序。

@@ -247,6 +247,7 @@ Redis使用简单介绍
 - node (https://nodejs.org/zh-cn/)
 - 安装Yarn (https://classic.yarnpkg.com/en/docs/install#windows-stable)
 - 配置NPM私库，`npm config set registry http://xxx.xxx.xxx.xxx:xxxx/repository/npm`
+- `npm config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass` // 命令作用: 专门解决 node-sass 二进制包下载慢、下载失败、超时报错，指定从淘宝镜像拉取编译包
 - 安装VScode (https://code.visualstudio.com/)
 
 ## 后端环境准备
